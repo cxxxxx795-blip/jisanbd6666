@@ -1,3 +1,17 @@
+import {
+  auth,
+  db,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where,
+  orderBy,
+  serverTimestamp
+} from "./firebase.js";
 // ===============================
 // JISANBD6666 Gaming Website
 // script.js
