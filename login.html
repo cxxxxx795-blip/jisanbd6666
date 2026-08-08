@@ -2,220 +2,268 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>JISANBD6666 - Login</title>
 
-    <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            background: #050505;
-            color: white;
-            font-family: Arial, sans-serif;
-        }
-
-        .header {
-            height: 65px;
-            background: #101010;
-            border-bottom: 1px solid #00ff66;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 7%;
-        }
-
-        .logo {
-            color: #00ff66;
-            font-size: 22px;
-            font-weight: bold;
-        }
-
-        .container {
-            width: 95%;
-            max-width: 500px;
-            margin: 50px auto;
-        }
-
-        .box {
-            background: #111;
-            border: 1px solid #00ff66;
-            border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 0 10px rgba(0, 255, 102, 0.15);
-        }
-
-        h2 {
-            text-align: center;
-            color: #00ff66;
-            margin-top: 0;
-        }
-
-        input {
-            width: 100%;
-            padding: 13px;
-            margin: 7px 0;
-            border: none;
-            border-radius: 6px;
-            background: #222;
-            color: white;
-            outline: none;
-        }
-
-        input:focus {
-            border: 1px solid #00ff66;
-        }
-
-        button {
-            width: 100%;
-            padding: 13px;
-            margin-top: 10px;
-            border: none;
-            border-radius: 6px;
-            background: #00ff66;
-            color: #000;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #00dd55;
-        }
-
-        .info {
-            text-align: center;
-            color: #aaa;
-            margin-top: 15px;
-        }
-
-        .info a {
-            color: #00ff66;
-            text-decoration: none;
-        }
-
-    </style>
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+    <!-- =========================
+         LOGIN PAGE HEADER
+    ========================== -->
 
-    <header class="header">
+    <header class="top-header">
 
-        <div class="logo">
+        <a href="login.html" class="brand">
             JISANBD6666
-        </div>
+        </a>
 
     </header>
 
 
-    <div class="container">
+    <!-- =========================
+         LOGIN PAGE
+    ========================== -->
+
+    <main class="auth-page">
+
+        <div class="auth-wrapper">
 
 
-        <!-- LOGIN -->
+            <!-- BIG BRAND -->
 
-        <div class="box">
+            <div class="auth-brand">
 
-            <h2>Login</h2>
+                <div class="auth-logo">
+                    JISANBD6666
+                </div>
 
-            <form id="loginForm">
+                <p>
+                    🎮 Welcome to the Gaming World
+                </p>
 
-                <input
-                    type="email"
-                    id="loginEmail"
-                    placeholder="Email Address"
-                    required
-                >
-
-                <input
-                    type="password"
-                    id="loginPassword"
-                    placeholder="Password"
-                    required
-                >
-
-                <button type="submit">
-                    Login
-                </button>
-
-            </form>
-
-        </div>
+            </div>
 
 
+            <!-- =====================
+                 LOGIN CARD
+            ====================== -->
 
-        <!-- CREATE ACCOUNT -->
+            <section class="auth-card">
 
-        <div class="box">
+                <div class="auth-icon">
+                    🔐
+                </div>
 
-            <h2>Create Account</h2>
+                <h1>
+                    Welcome Back
+                </h1>
 
-            <form id="registerForm">
+                <p class="auth-subtitle">
+                    Login to continue
+                </p>
 
-                <input
-                    type="text"
-                    id="registerName"
-                    placeholder="Full Name"
-                    required
-                >
 
-                <input
-                    type="email"
-                    id="registerEmail"
-                    placeholder="Email Address"
-                    required
-                >
+                <form id="loginForm">
 
-                <input
-                    type="tel"
-                    id="registerMobile"
-                    placeholder="Mobile Number"
-                    required
-                >
+                    <label for="loginEmail">
+                        Email Address
+                    </label>
 
-                <input
-                    type="password"
-                    id="registerPassword"
-                    placeholder="Password (minimum 6 characters)"
-                    required
-                >
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                        required
+                    >
 
-                <button type="submit">
+
+                    <label for="loginPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+
+                    <button
+                        type="submit"
+                        class="primary-btn">
+
+                        LOGIN
+
+                    </button>
+
+                </form>
+
+
+                <div class="auth-divider">
+                    <span>OR</span>
+                </div>
+
+
+                <p class="switch-text">
+
+                    Don't have an account?
+
+                    <a href="#register">
+                        Create Account
+                    </a>
+
+                </p>
+
+            </section>
+
+
+
+            <!-- =====================
+                 REGISTER CARD
+            ====================== -->
+
+            <section
+                class="auth-card register-card"
+                id="register">
+
+                <div class="auth-icon">
+                    👤
+                </div>
+
+                <h2>
                     Create Account
-                </button>
+                </h2>
 
-            </form>
+                <p class="auth-subtitle">
+                    Join JISANBD6666
+                </p>
+
+
+                <form id="registerForm">
+
+
+                    <label for="registerName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="registerName"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+
+                    <label for="registerEmail">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="registerEmail"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                        required
+                    >
+
+
+                    <label for="registerMobile">
+                        Mobile Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="registerMobile"
+                        placeholder="Enter mobile number"
+                        required
+                    >
+
+
+                    <label for="registerPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="registerPassword"
+                        placeholder="Minimum 6 characters"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required
+                    >
+
+
+                    <button
+                        type="submit"
+                        class="primary-btn">
+
+                        CREATE ACCOUNT
+
+                    </button>
+
+                </form>
+
+            </section>
+
+
+            <!-- =====================
+                 INFO
+            ====================== -->
+
+            <div class="auth-info">
+
+                <span>🎮 Games</span>
+
+                <span>💰 Deposit</span>
+
+                <span>💸 Withdraw</span>
+
+                <span>🏆 Rewards</span>
+
+            </div>
 
         </div>
 
-
-        <div class="info">
-
-            Account থাকলে উপরের Login ব্যবহার করুন।
-
-        </div>
+    </main>
 
 
-    </div>
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="site-footer">
+
+        <strong>
+            JISANBD6666
+        </strong>
+
+        <p>
+            Play Responsibly
+        </p>
+
+        <p>
+            © 2026 JISANBD6666
+        </p>
+
+    </footer>
 
 
-    <!-- Firebase / Script -->
+    <!-- =========================
+         FIREBASE SCRIPT
+    ========================== -->
 
     <script
         type="module"
         src="./script.js">
     </script>
-
 
 </body>
 
