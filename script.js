@@ -1,6 +1,8 @@
 // ==================================================
 // JISANBD6666
-// Firebase + Login + Register + Deposit + Logout
+// FINAL SCRIPT
+// Firebase + Auth + Wallet Requests + Games
+// Virtual points only
 // ==================================================
 
 import {
@@ -9,6 +11,7 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
+    onAuthStateChanged,
     collection,
     addDoc,
     serverTimestamp
@@ -16,11 +19,16 @@ import {
 
 
 // ==================================================
-// HELPER
+// HELPERS
 // ==================================================
 
-function showMessage(message) {
-    alert(message);
+function message(text) {
+    alert(text);
+}
+
+
+function get(id) {
+    return document.getElementById(id);
 }
 
 
@@ -28,39 +36,24 @@ function showMessage(message) {
 // LOGIN
 // ==================================================
 
-const loginForm = document.querySelector("#loginForm");
+const loginForm = get("loginForm");
 
 if (loginForm) {
 
-    loginForm.addEventListener("submit", async function (event) {
+    loginForm.addEventListener("submit", async (e) => {
 
-        event.preventDefault();
-
-        const emailInput =
-            document.querySelector("#loginEmail");
-
-        const passwordInput =
-            document.querySelector("#loginPassword");
-
-        if (!emailInput || !passwordInput) {
-            return;
-        }
+        e.preventDefault();
 
         const email =
-            emailInput.value.trim();
+            get("loginEmail")?.value.trim();
 
         const password =
-            passwordInput.value;
+            get("loginPassword")?.value;
 
         if (!email || !password) {
-
-            showMessage(
-                "❌ Email এবং Password দিন।"
-            );
-
+            message("❌ Email এবং Password দিন।");
             return;
         }
-
 
         try {
 
@@ -70,61 +63,110 @@ if (loginForm) {
                 password
             );
 
+            message("✅ Login successful!");
 
-            showMessage(
-                "✅ Login successful!"
+            window.location.replace("index.html");
+
+        } catch (error) {
+
+            console.error(error);
+
+            message(
+                "❌ Login failed: " +
+                (error.code || "Unknown error")
+            );
+        }
+
+    });
+
+}
+
+
+// ==================================================
+// REGISTER
+// ==================================================
+
+const registerForm = get("registerForm");
+
+if (registerForm) {
+
+    registerForm.addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+
+        const name =
+            get("registerName")?.value.trim();
+
+        const email =
+            get("registerEmail")?.value.trim();
+
+        const mobile =
+            get("registerMobile")?.value.trim();
+
+        const password =
+            get("registerPassword")?.value;
+
+        if (!name || !email || !mobile || !password) {
+
+            message(
+                "❌ সব তথ্য পূরণ করুন।"
+            );
+
+            return;
+        }
+
+        if (password.length < 6) {
+
+            message(
+                "❌ Password কমপক্ষে ৬ অক্ষরের হতে হবে।"
+            );
+
+            return;
+        }
+
+        try {
+
+            const credential =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+            const user =
+                credential.user;
+
+
+            await addDoc(
+                collection(db, "users"),
+                {
+                    uid: user.uid,
+                    name: name,
+                    email: email,
+                    mobile: mobile,
+                    createdAt: serverTimestamp()
+                }
             );
 
 
-            /*
-             * Login successful হওয়ার পরে
-             * main website-এ যাবে।
-             */
+            message(
+                "✅ Account successfully created!"
+            );
+
 
             window.location.replace(
-                "index.html"
+                "login.html"
             );
 
 
         } catch (error) {
 
-            console.error(
-                "Login Error:",
-                error
+            console.error(error);
+
+            message(
+                "❌ Registration failed: " +
+                (error.code || "Unknown error")
             );
-
-
-            let message =
-                "❌ Login failed.";
-
-            if (
-                error.code ===
-                "auth/invalid-credential"
-            ) {
-
-                message =
-                    "❌ Email অথবা Password ভুল।";
-
-            } else if (
-                error.code ===
-                "auth/user-not-found"
-            ) {
-
-                message =
-                    "❌ এই Email দিয়ে কোনো account নেই।";
-
-            } else if (
-                error.code ===
-                "auth/wrong-password"
-            ) {
-
-                message =
-                    "❌ Password ভুল।";
-
-            }
-
-
-            showMessage(message);
 
         }
 
@@ -133,265 +175,35 @@ if (loginForm) {
 }
 
 
-
 // ==================================================
-// REGISTER
+// AUTH STATE
 // ==================================================
 
-const registerForm =
-    document.querySelector("#registerForm");
+onAuthStateChanged(
+    auth,
+    (user) => {
 
+        const emailElement =
+            get("userEmail");
 
-if (registerForm) {
+        if (emailElement) {
 
-    registerForm.addEventListener(
-        "submit",
-        async function (event) {
+            if (user) {
 
-            event.preventDefault();
+                emailElement.textContent =
+                    user.email;
 
+            } else {
 
-            const nameInput =
-                document.querySelector(
-                    "#registerName"
-                );
-
-
-            const emailInput =
-                document.querySelector(
-                    "#registerEmail"
-                );
-
-
-            const mobileInput =
-                document.querySelector(
-                    "#registerMobile"
-                );
-
-
-            const passwordInput =
-                document.querySelector(
-                    "#registerPassword"
-                );
-
-
-            if (
-                !nameInput ||
-                !emailInput ||
-                !mobileInput ||
-                !passwordInput
-            ) {
-
-                return;
-
-            }
-
-
-            const name =
-                nameInput.value.trim();
-
-
-            const email =
-                emailInput.value.trim();
-
-
-            const mobile =
-                mobileInput.value.trim();
-
-
-            const password =
-                passwordInput.value;
-
-
-            if (
-                !name ||
-                !email ||
-                !mobile ||
-                !password
-            ) {
-
-                showMessage(
-                    "❌ সব তথ্য পূরণ করুন।"
-                );
-
-                return;
-
-            }
-
-
-            if (password.length < 6) {
-
-                showMessage(
-                    "❌ Password কমপক্ষে ৬ অক্ষরের হতে হবে।"
-                );
-
-                return;
-
-            }
-
-
-            try {
-
-
-                const userCredential =
-                    await createUserWithEmailAndPassword(
-                        auth,
-                        email,
-                        password
-                    );
-
-
-                const user =
-                    userCredential.user;
-
-
-                /*
-                 * Firestore-এ profile save
-                 */
-
-                await addDoc(
-                    collection(
-                        db,
-                        "users"
-                    ),
-                    {
-
-                        uid: user.uid,
-
-                        name: name,
-
-                        email: email,
-
-                        mobile: mobile,
-
-                        balance: 0,
-
-                        createdAt:
-                            serverTimestamp()
-
-                    }
-                );
-
-
-                showMessage(
-                    "✅ Account successfully created!"
-                );
-
-
-                /*
-                 * Register হওয়ার পরে
-                 * Login page-এ যাবে।
-                 */
-
-                window.location.replace(
-                    "login.html"
-                );
-
-
-            } catch (error) {
-
-                console.error(
-                    "Register Error:",
-                    error
-                );
-
-
-                let message =
-                    "❌ Registration failed.";
-
-
-                if (
-                    error.code ===
-                    "auth/email-already-in-use"
-                ) {
-
-                    message =
-                        "❌ এই Email দিয়ে আগে থেকেই account আছে।";
-
-                } else if (
-                    error.code ===
-                    "auth/invalid-email"
-                ) {
-
-                    message =
-                        "❌ সঠিক Email দিন।";
-
-                } else if (
-                    error.code ===
-                    "auth/weak-password"
-                ) {
-
-                    message =
-                        "❌ Password আরও শক্ত করুন।";
-
-                }
-
-
-                showMessage(message);
+                emailElement.textContent =
+                    "Not logged in";
 
             }
 
         }
-    );
-
-}
-
-
-
-// ==================================================
-// SHOW LOGGED-IN USER EMAIL
-// ==================================================
-
-const userEmailElement =
-    document.querySelector("#userEmail");
-
-
-if (userEmailElement) {
-
-    const currentUser =
-        auth.currentUser;
-
-
-    if (currentUser) {
-
-        userEmailElement.textContent =
-            currentUser.email;
-
-    } else {
-
-        /*
-         * Firebase authentication state
-         * load হওয়ার জন্য listener ব্যবহার।
-         */
-
-        auth.onAuthStateChanged(
-            function (user) {
-
-                if (user) {
-
-                    userEmailElement.textContent =
-                        user.email;
-
-                } else {
-
-                    /*
-                     * Login না থাকলে
-                     * login page-এ পাঠানো।
-                     */
-
-                    window.location.replace(
-                        "login.html"
-                    );
-
-                }
-
-            }
-        );
 
     }
-
-}
-
+);
 
 
 // ==================================================
@@ -399,39 +211,31 @@ if (userEmailElement) {
 // ==================================================
 
 const logoutButton =
-    document.querySelector("#logoutButton");
-
+    get("logoutButton");
 
 if (logoutButton) {
 
     logoutButton.addEventListener(
         "click",
-        async function () {
+        async () => {
 
             try {
 
                 await signOut(auth);
 
-
-                showMessage(
+                message(
                     "✅ Logout successful!"
                 );
-
 
                 window.location.replace(
                     "login.html"
                 );
 
-
             } catch (error) {
 
-                console.error(
-                    "Logout Error:",
-                    error
-                );
+                console.error(error);
 
-
-                showMessage(
+                message(
                     "❌ Logout failed."
                 );
 
@@ -443,78 +247,48 @@ if (logoutButton) {
 }
 
 
-
 // ==================================================
-// DEPOSIT
+// DEPOSIT REQUEST
 // ==================================================
 
 const depositForm =
-    document.querySelector("#depositForm");
-
+    get("depositForm");
 
 if (depositForm) {
 
     depositForm.addEventListener(
         "submit",
-        async function (event) {
+        async (e) => {
 
-            event.preventDefault();
-
-
-            const amountInput =
-                document.querySelector(
-                    "#depositAmount"
-                );
-
-
-            const trxInput =
-                document.querySelector(
-                    "#transactionId"
-                );
-
-
-            if (
-                !amountInput ||
-                !trxInput
-            ) {
-
-                return;
-
-            }
-
+            e.preventDefault();
 
             const amount =
                 Number(
-                    amountInput.value
+                    get("depositAmount")?.value
                 );
 
-
             const trxId =
-                trxInput.value.trim();
+                get("transactionId")
+                ?.value.trim();
 
 
-            if (
-                !amount ||
-                !trxId
-            ) {
+            if (!amount || !trxId) {
 
-                showMessage(
-                    "❌ Deposit Amount এবং Transaction ID দিন।"
+                message(
+                    "❌ Amount এবং Transaction ID দিন।"
                 );
 
                 return;
-
             }
 
 
             if (amount < 300) {
 
-                showMessage(
+                message(
                     "❌ Minimum deposit 300 TK."
                 );
 
                 return;
-
             }
 
 
@@ -524,7 +298,7 @@ if (depositForm) {
 
             if (!user) {
 
-                showMessage(
+                message(
                     "❌ আগে Login করুন।"
                 );
 
@@ -533,7 +307,6 @@ if (depositForm) {
                 );
 
                 return;
-
             }
 
 
@@ -545,31 +318,19 @@ if (depositForm) {
                         "deposits"
                     ),
                     {
-
-                        userId:
-                            user.uid,
-
-                        email:
-                            user.email,
-
-                        amount:
-                            amount,
-
-                        trxId:
-                            trxId,
-
-                        status:
-                            "pending",
-
+                        userId: user.uid,
+                        email: user.email,
+                        amount: amount,
+                        trxId: trxId,
+                        status: "pending",
                         createdAt:
                             serverTimestamp()
-
                     }
                 );
 
 
-                showMessage(
-                    "✅ Deposit Request Submitted!"
+                message(
+                    "✅ Deposit request submitted!"
                 );
 
 
@@ -578,14 +339,10 @@ if (depositForm) {
 
             } catch (error) {
 
-                console.error(
-                    "Deposit Error:",
-                    error
-                );
+                console.error(error);
 
-
-                showMessage(
-                    "❌ Deposit submit করা যায়নি।"
+                message(
+                    "❌ Deposit request failed."
                 );
 
             }
@@ -596,9 +353,8 @@ if (depositForm) {
 }
 
 
-
 // ==================================================
-// WITHDRAW
+// WITHDRAW REQUEST
 // ==================================================
 
 const withdrawButton =
@@ -606,68 +362,39 @@ const withdrawButton =
         "#withdraw button"
     );
 
-
 if (withdrawButton) {
 
     withdrawButton.addEventListener(
         "click",
-        async function () {
-
-
-            const numberInput =
-                document.querySelector(
-                    "#withdrawNumber"
-                );
-
-
-            const amountInput =
-                document.querySelector(
-                    "#withdrawAmount"
-                );
-
-
-            if (
-                !numberInput ||
-                !amountInput
-            ) {
-
-                return;
-
-            }
-
+        async () => {
 
             const number =
-                numberInput.value.trim();
-
+                get("withdrawNumber")
+                ?.value.trim();
 
             const amount =
                 Number(
-                    amountInput.value
+                    get("withdrawAmount")?.value
                 );
 
 
-            if (
-                !number ||
-                !amount
-            ) {
+            if (!number || !amount) {
 
-                showMessage(
-                    "❌ bKash Number এবং Amount দিন।"
+                message(
+                    "❌ Number এবং Amount দিন।"
                 );
 
                 return;
-
             }
 
 
             if (amount < 500) {
 
-                showMessage(
+                message(
                     "❌ Minimum withdraw 500 TK."
                 );
 
                 return;
-
             }
 
 
@@ -677,7 +404,7 @@ if (withdrawButton) {
 
             if (!user) {
 
-                showMessage(
+                message(
                     "❌ আগে Login করুন।"
                 );
 
@@ -686,14 +413,8 @@ if (withdrawButton) {
                 );
 
                 return;
-
             }
 
-
-            /*
-             * এখানে শুধু request record
-             * হিসেবে Firestore-এ save হচ্ছে।
-             */
 
             try {
 
@@ -703,49 +424,33 @@ if (withdrawButton) {
                         "withdrawals"
                     ),
                     {
-
-                        userId:
-                            user.uid,
-
-                        email:
-                            user.email,
-
-                        number:
-                            number,
-
-                        amount:
-                            amount,
-
-                        status:
-                            "pending",
-
+                        userId: user.uid,
+                        email: user.email,
+                        number: number,
+                        amount: amount,
+                        status: "pending",
                         createdAt:
                             serverTimestamp()
-
                     }
                 );
 
 
-                showMessage(
-                    "✅ Withdraw Request Submitted!"
+                message(
+                    "✅ Withdraw request submitted!"
                 );
 
 
-                numberInput.value = "";
+                get("withdrawNumber").value = "";
 
-                amountInput.value = "";
+                get("withdrawAmount").value = "";
 
 
             } catch (error) {
 
-                console.error(
-                    "Withdraw Error:",
-                    error
-                );
+                console.error(error);
 
-
-                showMessage(
-                    "❌ Withdraw request submit করা যায়নি।"
+                message(
+                    "❌ Withdraw request failed."
                 );
 
             }
@@ -756,11 +461,581 @@ if (withdrawButton) {
 }
 
 
+// ==================================================
+// AVIATOR
+// Virtual points only
+// ==================================================
+
+let aviatorBalance = 1000;
+
+let aviatorRunning = false;
+
+let aviatorMultiplier = 1;
+
+let aviatorBetAmount = 0;
+
+let aviatorCrashPoint = 0;
+
+let aviatorTimer = null;
+
+
+const aviatorStart =
+    get("aviatorStart");
+
+const aviatorCashout =
+    get("aviatorCashout");
+
+const multiplier =
+    get("multiplier");
+
+const aviatorStatus =
+    get("aviatorStatus");
+
+const virtualBalance =
+    get("virtualBalance");
+
+const aviatorBet =
+    get("aviatorBet");
+
+const plane =
+    document.querySelector(".plane");
+
+
+function updateAviatorBalance() {
+
+    if (virtualBalance) {
+
+        virtualBalance.textContent =
+            Math.floor(aviatorBalance);
+
+    }
+
+}
+
+
+function stopAviator() {
+
+    aviatorRunning = false;
+
+    if (aviatorTimer) {
+
+        clearInterval(
+            aviatorTimer
+        );
+
+        aviatorTimer = null;
+
+    }
+
+    if (aviatorStart) {
+
+        aviatorStart.disabled = false;
+
+    }
+
+    if (aviatorCashout) {
+
+        aviatorCashout.disabled = true;
+
+    }
+
+    if (plane) {
+
+        plane.classList.remove(
+            "flying"
+        );
+
+    }
+
+}
+
+
+function crashAviator() {
+
+    if (!aviatorRunning) {
+        return;
+    }
+
+    if (multiplier) {
+
+        multiplier.textContent =
+            aviatorMultiplier.toFixed(2)
+            + "x";
+
+    }
+
+    if (aviatorStatus) {
+
+        aviatorStatus.textContent =
+            "💥 CRASHED at " +
+            aviatorMultiplier.toFixed(2) +
+            "x";
+
+    }
+
+    stopAviator();
+
+}
+
+
+if (aviatorStart) {
+
+    aviatorStart.addEventListener(
+        "click",
+        () => {
+
+            if (aviatorRunning) {
+                return;
+            }
+
+
+            const bet =
+                Number(
+                    aviatorBet?.value
+                );
+
+
+            if (!bet || bet <= 0) {
+
+                message(
+                    "Enter a valid virtual bet."
+                );
+
+                return;
+            }
+
+
+            if (bet > aviatorBalance) {
+
+                message(
+                    "❌ Not enough virtual points."
+                );
+
+                return;
+            }
+
+
+            aviatorBetAmount = bet;
+
+            aviatorBalance -= bet;
+
+            updateAviatorBalance();
+
+
+            aviatorMultiplier = 1;
+
+            aviatorCrashPoint =
+                1.30 +
+                Math.random() * 5.70;
+
+            aviatorRunning = true;
+
+
+            if (multiplier) {
+
+                multiplier.textContent =
+                    "1.00x";
+
+            }
+
+
+            if (aviatorStatus) {
+
+                aviatorStatus.textContent =
+                    "✈️ Plane is flying...";
+
+            }
+
+
+            aviatorStart.disabled = true;
+
+            aviatorCashout.disabled = false;
+
+
+            if (plane) {
+
+                plane.classList.remove(
+                    "flying"
+                );
+
+                void plane.offsetWidth;
+
+                plane.classList.add(
+                    "flying"
+                );
+
+            }
+
+
+            aviatorTimer =
+                setInterval(
+                    () => {
+
+                        aviatorMultiplier +=
+                            0.025 +
+                            aviatorMultiplier *
+                            0.012;
+
+
+                        if (multiplier) {
+
+                            multiplier.textContent =
+                                aviatorMultiplier
+                                .toFixed(2) +
+                                "x";
+
+                        }
+
+
+                        if (
+                            aviatorMultiplier >=
+                            aviatorCrashPoint
+                        ) {
+
+                            crashAviator();
+
+                        }
+
+                    },
+                    100
+                );
+
+        }
+    );
+
+}
+
+
+if (aviatorCashout) {
+
+    aviatorCashout.addEventListener(
+        "click",
+        () => {
+
+            if (!aviatorRunning) {
+                return;
+            }
+
+
+            const winnings =
+                aviatorBetAmount *
+                aviatorMultiplier;
+
+
+            aviatorBalance += winnings;
+
+            updateAviatorBalance();
+
+
+            if (aviatorStatus) {
+
+                aviatorStatus.textContent =
+                    "🎉 CASHED OUT at " +
+                    aviatorMultiplier.toFixed(2) +
+                    "x";
+
+            }
+
+
+            stopAviator();
+
+        }
+    );
+
+}
+
+
+updateAviatorBalance();
+
 
 // ==================================================
-// PAGE LOAD
+// SIMPLE PLAYABLE GAMES
+// Virtual points only
+// ==================================================
+
+function playSlot() {
+
+    const a =
+        Math.floor(
+            Math.random() * 9
+        ) + 1;
+
+    const b =
+        Math.floor(
+            Math.random() * 9
+        ) + 1;
+
+    const c =
+        Math.floor(
+            Math.random() * 9
+        ) + 1;
+
+
+    if (a === b && b === c) {
+
+        message(
+            `🎰 ${a} | ${b} | ${c}\n\nJACKPOT!`
+        );
+
+    } else if (
+        a === b ||
+        b === c ||
+        a === c
+    ) {
+
+        message(
+            `🎰 ${a} | ${b} | ${c}\n\nNice match!`
+        );
+
+    } else {
+
+        message(
+            `🎰 ${a} | ${b} | ${c}\n\nTry again!`
+        );
+
+    }
+
+}
+
+
+function playLuckySpin() {
+
+    const prizes = [
+        "⭐ 10 Points",
+        "⭐ 25 Points",
+        "⭐ 50 Points",
+        "⭐ 100 Points",
+        "🍀 Lucky!",
+        "🎉 Bonus!"
+    ];
+
+
+    const result =
+        prizes[
+            Math.floor(
+                Math.random() *
+                prizes.length
+            )
+        ];
+
+
+    message(
+        "🎡 Lucky Spin\n\n" +
+        result
+    );
+
+}
+
+
+function playMines() {
+
+    const safe =
+        Math.floor(
+            Math.random() * 80
+        ) + 20;
+
+
+    message(
+        "💎 Mines\n\n" +
+        "You found a safe tile!\n" +
+        "Virtual score: " +
+        safe
+    );
+
+}
+
+
+function playBlackjack() {
+
+    const player =
+        Math.floor(
+            Math.random() * 11
+        ) + 11;
+
+    const dealer =
+        Math.floor(
+            Math.random() * 11
+        ) + 11;
+
+
+    if (player > dealer) {
+
+        message(
+            "🃏 Blackjack\n\n" +
+            "You: " + player +
+            "\nDealer: " + dealer +
+            "\n\nYou win!"
+        );
+
+    } else if (player === dealer) {
+
+        message(
+            "🃏 Blackjack\n\n" +
+            "You: " + player +
+            "\nDealer: " + dealer +
+            "\n\nDraw!"
+        );
+
+    } else {
+
+        message(
+            "🃏 Blackjack\n\n" +
+            "You: " + player +
+            "\nDealer: " + dealer +
+            "\n\nDealer wins!"
+        );
+
+    }
+
+}
+
+
+function playDice() {
+
+    const dice =
+        Math.floor(
+            Math.random() * 6
+        ) + 1;
+
+
+    message(
+        "🎲 Dice Roll\n\n" +
+        "You rolled: " +
+        dice
+    );
+
+}
+
+
+function playLucky7() {
+
+    const number =
+        Math.floor(
+            Math.random() * 13
+        ) + 1;
+
+
+    if (number === 7) {
+
+        message(
+            "7️⃣ Lucky 7!\n\n" +
+            "You got 7! 🎉"
+        );
+
+    } else {
+
+        message(
+            "7️⃣ Number: " +
+            number +
+            "\n\nTry again!"
+        );
+
+    }
+
+}
+
+
+function playRocket() {
+
+    const height =
+        (
+            1 +
+            Math.random() * 9
+        ).toFixed(2);
+
+
+    message(
+        "🚀 Rocket reached\n\n" +
+        height +
+        "x"
+    );
+
+}
+
+
+function playCoinFlip() {
+
+    const result =
+        Math.random() < 0.5
+            ? "HEADS 🟡"
+            : "TAILS ⚪";
+
+
+    message(
+        "🪙 Coin Flip\n\n" +
+        result
+    );
+
+}
+
+
+function playColorGame() {
+
+    const colors = [
+        "RED 🔴",
+        "BLUE 🔵",
+        "GREEN 🟢",
+        "YELLOW 🟡"
+    ];
+
+
+    const result =
+        colors[
+            Math.floor(
+                Math.random() *
+                colors.length
+            )
+        ];
+
+
+    message(
+        "🎯 Color Result\n\n" +
+        result
+    );
+
+}
+
+
+// ==================================================
+// GLOBAL FUNCTIONS
+// ==================================================
+//
+// index.html-এর onclick থেকে functionগুলো
+// ব্যবহার করার জন্য window-তে রাখা হয়েছে.
+//
+
+window.playSlot =
+    playSlot;
+
+window.playLuckySpin =
+    playLuckySpin;
+
+window.playMines =
+    playMines;
+
+window.playBlackjack =
+    playBlackjack;
+
+window.playDice =
+    playDice;
+
+window.playLucky7 =
+    playLucky7;
+
+window.playRocket =
+    playRocket;
+
+window.playCoinFlip =
+    playCoinFlip;
+
+window.playColorGame =
+    playColorGame;
+
+
+// ==================================================
+// READY
 // ==================================================
 
 console.log(
-    "🔥 JISANBD6666 Firebase system loaded successfully!"
+    "🔥 JISANBD6666 loaded successfully."
 );
