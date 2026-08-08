@@ -43,7 +43,7 @@ if (registerForm) {
 
         try {
 
-            // Firebase Authentication account create
+            // Firebase account তৈরি
             const userCredential =
                 await createUserWithEmailAndPassword(
                     auth,
@@ -54,7 +54,7 @@ if (registerForm) {
             const user = userCredential.user;
 
 
-            // Firestore user profile
+            // Firestore-এ user information save
             await setDoc(
                 doc(db, "users", user.uid),
                 {
@@ -68,13 +68,16 @@ if (registerForm) {
             );
 
 
+            // Form clear
             registerForm.reset();
 
+
+            // Success message
             alert("✅ Account successfully created!");
 
 
-            // আলাদা Login page-এ যাবে
-            window.location.href = "login.html";
+            // Login page-এ পাঠাবে
+            window.location.href = "./login.html";
 
 
         } catch (error) {
@@ -90,7 +93,7 @@ if (registerForm) {
             } else if (error.code === "auth/invalid-email") {
 
                 alert(
-                    "❌ Valid Email Address দিন।"
+                    "❌ সঠিক Gmail/Email Address দিন।"
                 );
 
             } else if (error.code === "auth/weak-password") {
@@ -107,6 +110,7 @@ if (registerForm) {
                 );
 
             }
+
         }
 
     });
@@ -119,64 +123,70 @@ if (registerForm) {
 // LOGIN
 // ========================================
 
-const loginForm = document.querySelector(".login form");
+const loginForm =
+    document.querySelector(".login form");
 
 if (loginForm) {
 
-    loginForm.addEventListener("submit", async function (e) {
+    loginForm.addEventListener(
+        "submit",
+        async function (e) {
 
-        e.preventDefault();
+            e.preventDefault();
 
-        const inputs =
-            loginForm.querySelectorAll("input");
+            const inputs =
+                loginForm.querySelectorAll("input");
 
-        const email =
-            inputs[0].value.trim();
+            const email =
+                inputs[0].value.trim();
 
-        const password =
-            inputs[1].value;
+            const password =
+                inputs[1].value;
 
 
-        if (!email || !password) {
+            if (!email || !password) {
 
-            alert(
-                "Email এবং Password দিন।"
-            );
+                alert(
+                    "Email এবং Password দিন।"
+                );
 
-            return;
+                return;
+            }
+
+
+            try {
+
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+                alert(
+                    "✅ Login successful!"
+                );
+
+
+                loginForm.reset();
+
+
+                // Login successful হলে Home page
+                window.location.href = "./index.html";
+
+
+            } catch (error) {
+
+                console.error("LOGIN ERROR:", error);
+
+                alert(
+                    "❌ Login failed: Email অথবা Password ভুল।"
+                );
+
+            }
+
         }
-
-
-        try {
-
-            await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
-
-
-            alert("✅ Login successful!");
-
-
-            loginForm.reset();
-
-
-            // Login সফল হলে Home page
-            window.location.href = "index.html";
-
-
-        } catch (error) {
-
-            console.error("LOGIN ERROR:", error);
-
-            alert(
-                "❌ Login failed: Email অথবা Password ভুল।"
-            );
-
-        }
-
-    });
+    );
 
 }
 
@@ -197,10 +207,12 @@ if (depositForm) {
 
             e.preventDefault();
 
+
             const amount =
                 depositForm.querySelector(
                     'input[type="number"]'
                 ).value;
+
 
             const trx =
                 depositForm.querySelector(
@@ -228,7 +240,8 @@ if (depositForm) {
             }
 
 
-            const user = auth.currentUser;
+            const user =
+                auth.currentUser;
 
 
             if (!user) {
@@ -334,7 +347,8 @@ if (withdrawForm) {
             }
 
 
-            const user = auth.currentUser;
+            const user =
+                auth.currentUser;
 
 
             if (!user) {
@@ -402,9 +416,11 @@ window.logoutUser = async function () {
 
         await signOut(auth);
 
-        alert("✅ Logout successful!");
+        alert(
+            "✅ Logout successful!"
+        );
 
-        window.location.href = "index.html";
+        window.location.href = "./index.html";
 
     } catch (error) {
 
@@ -413,7 +429,9 @@ window.logoutUser = async function () {
             error
         );
 
-        alert("❌ Logout failed.");
+        alert(
+            "❌ Logout failed."
+        );
 
     }
 
@@ -431,20 +449,22 @@ const playButtons =
     );
 
 
-playButtons.forEach(function (btn) {
+playButtons.forEach(
+    function (btn) {
 
-    btn.addEventListener(
-        "click",
-        function () {
+        btn.addEventListener(
+            "click",
+            function () {
 
-            alert(
-                "🎮 Game Coming Soon..."
-            );
+                alert(
+                    "🎮 Game Coming Soon..."
+                );
 
-        }
-    );
+            }
+        );
 
-});
+    }
+);
 
 
 
