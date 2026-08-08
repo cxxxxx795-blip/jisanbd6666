@@ -3,50 +3,148 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Login - JISANBD6666</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
+    <title>JISANBD6666 - Login</title>
+
+    <link rel="stylesheet"
+          href="style.css">
 </head>
+
 
 <body>
 
-    <section class="login" id="login">
+    <!-- ============================= -->
+    <!-- HEADER -->
+    <!-- ============================= -->
 
-        <h2>Login</h2>
+    <header>
 
-        <form>
+        <div class="logo">
+            JISANBD6666
+        </div>
 
-            <input
-                type="email"
-                placeholder="Email Address"
-                required
-            >
+        <nav>
 
-            <input
-                type="password"
-                placeholder="Password"
-                required
-            >
+            <a href="index.html">
+                Home
+            </a>
 
-            <button type="submit">
+            <a href="index.html#games">
+                Games
+            </a>
+
+            <a href="index.html#deposit">
+                Deposit
+            </a>
+
+            <a href="index.html#withdraw">
+                Withdraw
+            </a>
+
+            <a href="login.html">
                 Login
-            </button>
+            </a>
 
-        </form>
-
-        <p>
-            Don't have an account?
             <a href="index.html#register">
                 Create Account
             </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ============================= -->
+    <!-- LOGIN SECTION -->
+    <!-- ============================= -->
+
+    <main>
+
+        <section class="login">
+
+            <div class="login-box">
+
+                <h2>
+                    🔐 Login
+                </h2>
+
+
+                <form>
+
+                    <!-- EMAIL -->
+
+                    <input
+                        type="email"
+                        placeholder="Email Address"
+                        autocomplete="email"
+                        required
+                    >
+
+
+                    <!-- PASSWORD -->
+
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+
+                    <!-- LOGIN BUTTON -->
+
+                    <button
+                        type="submit">
+                        Login
+                    </button>
+
+                </form>
+
+
+                <!-- CREATE ACCOUNT LINK -->
+
+                <p>
+                    Don't have an account?
+                    <a href="index.html#register">
+                        Create Account
+                    </a>
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ============================= -->
+    <!-- FOOTER -->
+    <!-- ============================= -->
+
+    <footer>
+
+        <p>
+            © 2026 JISANBD6666
         </p>
 
-    </section>
+        <p>
+            Play Responsibly
+        </p>
+
+    </footer>
 
 
-    <script type="module" src="script.js"></script>
+    <!-- ============================= -->
+    <!-- FIREBASE / SCRIPT -->
+    <!-- ============================= -->
+
+    <script
+        type="module"
+        src="script.js">
+    </script>
 
 </body>
 
