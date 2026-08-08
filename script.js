@@ -4,17 +4,22 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
-    doc,
-    setDoc,
     collection,
     addDoc,
     serverTimestamp
 } from "./firebase.js";
 
 
-// ========================================
-// REGISTER
-// ========================================
+// ==========================================
+// JISANBD6666 FIREBASE SYSTEM
+// ==========================================
+
+console.log("🔥 JISANBD6666 Firebase system loaded!");
+
+
+// ==========================================
+// REGISTER / CREATE ACCOUNT
+// ==========================================
 
 const registerForm = document.querySelector(".register form");
 
@@ -26,24 +31,22 @@ if (registerForm) {
 
         const inputs = registerForm.querySelectorAll("input");
 
-        const name = inputs[0].value.trim();
-        const email = inputs[1].value.trim();
-        const mobile = inputs[2].value.trim();
-        const password = inputs[3].value;
+        const name = inputs[0]?.value.trim();
+        const email = inputs[1]?.value.trim();
+        const mobile = inputs[2]?.value.trim();
+        const password = inputs[3]?.value;
 
+        // Check information
         if (!name || !email || !mobile || !password) {
-            alert("সব তথ্য পূরণ করুন।");
-            return;
-        }
 
-        if (password.length < 6) {
-            alert("Password কমপক্ষে 6 characters হতে হবে।");
+            alert("❌ সব তথ্য পূরণ করুন।");
             return;
+
         }
 
         try {
 
-            // Firebase account তৈরি
+            // Firebase account create
             const userCredential =
                 await createUserWithEmailAndPassword(
                     auth,
@@ -54,55 +57,72 @@ if (registerForm) {
             const user = userCredential.user;
 
 
-            // Firestore-এ user information save
-            await setDoc(
-                doc(db, "users", user.uid),
+            // Firestore user profile
+            await addDoc(
+                collection(db, "users"),
                 {
+
                     uid: user.uid,
+
                     name: name,
+
                     email: email,
+
                     mobile: mobile,
+
                     balance: 0,
+
                     createdAt: serverTimestamp()
+
                 }
             );
 
 
-            // Form clear
-            registerForm.reset();
-
-
-            // Success message
+            // Success
             alert("✅ Account successfully created!");
 
 
-            // Login page-এ পাঠাবে
-            window.location.href = "./login.html";
+            // Clear form
+            registerForm.reset();
+
+
+            // Go to login page
+            window.location.href = "login.html";
 
 
         } catch (error) {
 
-            console.error("REGISTER ERROR:", error);
+            console.error(
+                "Registration error:",
+                error
+            );
+
 
             if (error.code === "auth/email-already-in-use") {
 
                 alert(
-                    "❌ এই Email দিয়ে আগে থেকেই account আছে।"
+                    "❌ এই Email দিয়ে আগে থেকেই Account আছে।"
                 );
 
-            } else if (error.code === "auth/invalid-email") {
+            }
+
+            else if (error.code === "auth/invalid-email") {
 
                 alert(
-                    "❌ সঠিক Gmail/Email Address দিন।"
+                    "❌ সঠিক Email Address দিন।"
                 );
 
-            } else if (error.code === "auth/weak-password") {
+            }
+
+            else if (error.code === "auth/weak-password") {
 
                 alert(
                     "❌ Password কমপক্ষে 6 characters হতে হবে।"
                 );
 
-            } else {
+            }
+
+            else {
 
                 alert(
                     "❌ Registration failed: " +
@@ -118,86 +138,107 @@ if (registerForm) {
 }
 
 
-
-// ========================================
+// ==========================================
 // LOGIN
-// ========================================
+// ==========================================
 
-const loginForm =
-    document.querySelector(".login form");
+const loginForm = document.querySelector(".login form");
 
 if (loginForm) {
 
-    loginForm.addEventListener(
-        "submit",
-        async function (e) {
+    loginForm.addEventListener("submit", async function (e) {
 
-            e.preventDefault();
-
-            const inputs =
-                loginForm.querySelectorAll("input");
-
-            const email =
-                inputs[0].value.trim();
-
-            const password =
-                inputs[1].value;
+        e.preventDefault();
 
 
-            if (!email || !password) {
+        const inputs =
+            loginForm.querySelectorAll("input");
+
+
+        const email =
+            inputs[0]?.value.trim();
+
+
+        const password =
+            inputs[1]?.value;
+
+
+        if (!email || !password) {
+
+            alert(
+                "❌ Email এবং Password দিন।"
+            );
+
+            return;
+
+        }
+
+
+        try {
+
+            // Firebase login
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+
+            alert(
+                "✅ Login successful!"
+            );
+
+
+            loginForm.reset();
+
+
+            // Go to main website
+            window.location.href =
+                "index.html";
+
+
+        } catch (error) {
+
+            console.error(
+                "Login error:",
+                error
+            );
+
+
+            if (
+                error.code ===
+                "auth/invalid-credential"
+            ) {
 
                 alert(
-                    "Email এবং Password দিন।"
+                    "❌ Email অথবা Password ভুল।"
                 );
 
-                return;
             }
 
-
-            try {
-
-                await signInWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
-                );
-
+            else {
 
                 alert(
-                    "✅ Login successful!"
-                );
-
-
-                loginForm.reset();
-
-
-                // Login successful হলে Home page
-                window.location.href = "./index.html";
-
-
-            } catch (error) {
-
-                console.error("LOGIN ERROR:", error);
-
-                alert(
-                    "❌ Login failed: Email অথবা Password ভুল।"
+                    "❌ Login failed: " +
+                    error.message
                 );
 
             }
 
         }
-    );
+
+    });
 
 }
 
 
-
-// ========================================
+// ==========================================
 // DEPOSIT
-// ========================================
+// ==========================================
 
 const depositForm =
     document.querySelector(".deposit form");
+
 
 if (depositForm) {
 
@@ -208,38 +249,38 @@ if (depositForm) {
             e.preventDefault();
 
 
-            const amount =
+            const amountInput =
                 depositForm.querySelector(
                     'input[type="number"]'
-                ).value;
+                );
+
+
+            const trxInput =
+                depositForm.querySelector(
+                    'input[type="text"]'
+                );
+
+
+            const amount =
+                amountInput?.value;
 
 
             const trx =
-                depositForm.querySelector(
-                    'input[type="text"]'
-                ).value.trim();
+                trxInput?.value.trim();
 
 
             if (!amount || !trx) {
 
                 alert(
-                    "Deposit Amount এবং Transaction ID দিন।"
+                    "❌ Deposit Amount এবং Transaction ID দিন।"
                 );
 
                 return;
+
             }
 
 
-            if (Number(amount) < 300) {
-
-                alert(
-                    "❌ Minimum Deposit 300 TK."
-                );
-
-                return;
-            }
-
-
+            // Current logged-in user
             const user =
                 auth.currentUser;
 
@@ -250,7 +291,11 @@ if (depositForm) {
                     "❌ আগে Login করুন।"
                 );
 
+                window.location.href =
+                    "login.html";
+
                 return;
+
             }
 
 
@@ -259,12 +304,18 @@ if (depositForm) {
                 await addDoc(
                     collection(db, "deposits"),
                     {
+
                         userId: user.uid,
-                        email: user.email,
+
                         amount: Number(amount),
+
                         trxId: trx,
+
                         status: "pending",
-                        createdAt: serverTimestamp()
+
+                        createdAt:
+                            serverTimestamp()
+
                     }
                 );
 
@@ -280,14 +331,13 @@ if (depositForm) {
             } catch (error) {
 
                 console.error(
-                    "DEPOSIT ERROR:",
+                    "Deposit error:",
                     error
                 );
 
 
                 alert(
-                    "❌ Deposit submit করা যায়নি: " +
-                    error.message
+                    "❌ Deposit submit করা যায়নি।"
                 );
 
             }
@@ -298,13 +348,13 @@ if (depositForm) {
 }
 
 
-
-// ========================================
+// ==========================================
 // WITHDRAW
-// ========================================
+// ==========================================
 
 const withdrawForm =
     document.querySelector(".withdraw form");
+
 
 if (withdrawForm) {
 
@@ -315,38 +365,38 @@ if (withdrawForm) {
             e.preventDefault();
 
 
-            const number =
+            const numberInput =
                 withdrawForm.querySelector(
                     'input[type="text"]'
-                ).value.trim();
+                );
+
+
+            const amountInput =
+                withdrawForm.querySelector(
+                    'input[type="number"]'
+                );
+
+
+            const number =
+                numberInput?.value.trim();
 
 
             const amount =
-                withdrawForm.querySelector(
-                    'input[type="number"]'
-                ).value;
+                amountInput?.value;
 
 
             if (!number || !amount) {
 
                 alert(
-                    "bKash Number এবং Amount দিন।"
+                    "❌ bKash Number এবং Amount দিন।"
                 );
 
                 return;
+
             }
 
 
-            if (Number(amount) < 500) {
-
-                alert(
-                    "❌ Minimum Withdraw 500 TK."
-                );
-
-                return;
-            }
-
-
+            // Current logged-in user
             const user =
                 auth.currentUser;
 
@@ -357,7 +407,11 @@ if (withdrawForm) {
                     "❌ আগে Login করুন।"
                 );
 
+                window.location.href =
+                    "login.html";
+
                 return;
+
             }
 
 
@@ -366,12 +420,18 @@ if (withdrawForm) {
                 await addDoc(
                     collection(db, "withdrawals"),
                     {
+
                         userId: user.uid,
-                        email: user.email,
+
                         number: number,
+
                         amount: Number(amount),
+
                         status: "pending",
-                        createdAt: serverTimestamp()
+
+                        createdAt:
+                            serverTimestamp()
+
                     }
                 );
 
@@ -387,14 +447,13 @@ if (withdrawForm) {
             } catch (error) {
 
                 console.error(
-                    "WITHDRAW ERROR:",
+                    "Withdraw error:",
                     error
                 );
 
 
                 alert(
-                    "❌ Withdraw submit করা যায়নি: " +
-                    error.message
+                    "❌ Withdraw submit করা যায়নি।"
                 );
 
             }
@@ -405,10 +464,9 @@ if (withdrawForm) {
 }
 
 
-
-// ========================================
+// ==========================================
 // LOGOUT
-// ========================================
+// ==========================================
 
 window.logoutUser = async function () {
 
@@ -416,18 +474,23 @@ window.logoutUser = async function () {
 
         await signOut(auth);
 
+
         alert(
             "✅ Logout successful!"
         );
 
-        window.location.href = "./index.html";
+
+        window.location.href =
+            "login.html";
+
 
     } catch (error) {
 
         console.error(
-            "LOGOUT ERROR:",
+            "Logout error:",
             error
         );
+
 
         alert(
             "❌ Logout failed."
@@ -438,10 +501,9 @@ window.logoutUser = async function () {
 };
 
 
-
-// ========================================
+// ==========================================
 // GAME BUTTONS
-// ========================================
+// ==========================================
 
 const playButtons =
     document.querySelectorAll(
@@ -467,11 +529,64 @@ playButtons.forEach(
 );
 
 
+// ==========================================
+// REGISTER PAGE → LOGIN PAGE
+// ==========================================
 
-// ========================================
-// SYSTEM READY
-// ========================================
+const loginLinks =
+    document.querySelectorAll(
+        'a[href="login.html"]'
+    );
+
+
+loginLinks.forEach(
+    function (link) {
+
+        link.addEventListener(
+            "click",
+            function () {
+
+                window.location.href =
+                    "login.html";
+
+            }
+        );
+
+    }
+);
+
+
+// ==========================================
+// LOGIN PAGE → HOME PAGE
+// ==========================================
+
+const homeLinks =
+    document.querySelectorAll(
+        'a[href="index.html"]'
+    );
+
+
+homeLinks.forEach(
+    function (link) {
+
+        link.addEventListener(
+            "click",
+            function () {
+
+                window.location.href =
+                    "index.html";
+
+            }
+        );
+
+    }
+);
+
+
+// ==========================================
+// FINISHED
+// ==========================================
 
 console.log(
-    "🔥 JISANBD6666 Firebase system loaded successfully!"
+    "✅ All JISANBD6666 functions loaded!"
 );
