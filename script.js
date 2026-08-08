@@ -10,14 +10,9 @@ import {
 } from "./firebase.js";
 
 
-// ========================================
-// JISANBD6666 - FIREBASE SYSTEM
-// ========================================
-
-
-// ========================================
-// REGISTER / CREATE ACCOUNT
-// ========================================
+// ===============================
+// REGISTER
+// ===============================
 
 const registerForm = document.querySelector(".register form");
 
@@ -39,14 +34,8 @@ if (registerForm) {
             return;
         }
 
-        if (password.length < 6) {
-            alert("Password কমপক্ষে 6 অক্ষরের হতে হবে।");
-            return;
-        }
-
         try {
 
-            // Create Firebase account
             const userCredential =
                 await createUserWithEmailAndPassword(
                     auth,
@@ -56,7 +45,6 @@ if (registerForm) {
 
             const user = userCredential.user;
 
-            // Save user information in Firestore
             await addDoc(
                 collection(db, "users"),
                 {
@@ -75,24 +63,19 @@ if (registerForm) {
 
         } catch (error) {
 
-            console.error("REGISTER ERROR:", error);
+            console.error(error);
 
             if (error.code === "auth/email-already-in-use") {
-
-                alert("❌ এই Email দিয়ে আগে থেকেই Account আছে।");
-
-            } else if (error.code === "auth/invalid-email") {
-
+                alert("❌ এই Email দিয়ে আগে থেকেই account আছে।");
+            }
+            else if (error.code === "auth/invalid-email") {
                 alert("❌ সঠিক Email Address দিন।");
-
-            } else if (error.code === "auth/weak-password") {
-
-                alert("❌ Password খুব দুর্বল। কমপক্ষে 6 অক্ষর দিন।");
-
-            } else {
-
+            }
+            else if (error.code === "auth/weak-password") {
+                alert("❌ Password কমপক্ষে 6 অক্ষরের হতে হবে।");
+            }
+            else {
                 alert("❌ Registration failed: " + error.message);
-
             }
         }
 
@@ -101,9 +84,9 @@ if (registerForm) {
 }
 
 
-// ========================================
+// ===============================
 // LOGIN
-// ========================================
+// ===============================
 
 const loginForm = document.querySelector(".login form");
 
@@ -119,10 +102,8 @@ if (loginForm) {
         const password = inputs[1].value;
 
         if (!email || !password) {
-
             alert("Email এবং Password দিন।");
             return;
-
         }
 
         try {
@@ -139,7 +120,7 @@ if (loginForm) {
 
         } catch (error) {
 
-            console.error("LOGIN ERROR:", error);
+            console.error(error);
 
             alert("❌ Login failed: Email অথবা Password ভুল।");
 
@@ -150,9 +131,9 @@ if (loginForm) {
 }
 
 
-// ========================================
+// ===============================
 // DEPOSIT
-// ========================================
+// ===============================
 
 const depositForm = document.querySelector(".deposit form");
 
@@ -162,42 +143,25 @@ if (depositForm) {
 
         e.preventDefault();
 
-        const amountInput =
-            depositForm.querySelector('input[type="number"]');
+        const amount =
+            depositForm.querySelector(
+                'input[type="number"]'
+            ).value;
 
-        const trxInput =
-            depositForm.querySelector('input[type="text"]');
-
-        const amount = amountInput
-            ? amountInput.value.trim()
-            : "";
-
-        const trx = trxInput
-            ? trxInput.value.trim()
-            : "";
+        const trx =
+            depositForm.querySelector(
+                'input[type="text"]'
+            ).value.trim();
 
         if (!amount || !trx) {
-
-            alert(
-                "Deposit Amount এবং Transaction ID দিন।"
-            );
-
-            return;
-        }
-
-        if (Number(amount) < 300) {
-
-            alert("❌ Minimum Deposit 300 TK.");
-
+            alert("Deposit Amount এবং Transaction ID দিন।");
             return;
         }
 
         const user = auth.currentUser;
 
         if (!user) {
-
             alert("❌ আগে Login করুন।");
-
             return;
         }
 
@@ -214,20 +178,15 @@ if (depositForm) {
                 }
             );
 
-            alert(
-                "✅ Deposit Request Submitted Successfully!"
-            );
+            alert("✅ Deposit Request Submitted!");
 
             depositForm.reset();
 
         } catch (error) {
 
-            console.error("DEPOSIT ERROR:", error);
+            console.error(error);
 
-            alert(
-                "❌ Deposit submit করা যায়নি: " +
-                error.message
-            );
+            alert("❌ Deposit submit করা যায়নি।");
 
         }
 
@@ -236,9 +195,9 @@ if (depositForm) {
 }
 
 
-// ========================================
+// ===============================
 // WITHDRAW
-// ========================================
+// ===============================
 
 const withdrawForm =
     document.querySelector(".withdraw form");
@@ -251,48 +210,25 @@ if (withdrawForm) {
 
             e.preventDefault();
 
-            const numberInput =
+            const number =
                 withdrawForm.querySelector(
                     'input[type="text"]'
-                );
+                ).value.trim();
 
-            const amountInput =
+            const amount =
                 withdrawForm.querySelector(
                     'input[type="number"]'
-                );
-
-            const number = numberInput
-                ? numberInput.value.trim()
-                : "";
-
-            const amount = amountInput
-                ? amountInput.value.trim()
-                : "";
+                ).value;
 
             if (!number || !amount) {
-
-                alert(
-                    "bKash Number এবং Amount দিন।"
-                );
-
-                return;
-            }
-
-            if (Number(amount) < 500) {
-
-                alert(
-                    "❌ Minimum Withdraw 500 TK."
-                );
-
+                alert("bKash Number এবং Amount দিন।");
                 return;
             }
 
             const user = auth.currentUser;
 
             if (!user) {
-
                 alert("❌ আগে Login করুন।");
-
                 return;
             }
 
@@ -309,23 +245,15 @@ if (withdrawForm) {
                     }
                 );
 
-                alert(
-                    "✅ Withdraw Request Submitted Successfully!"
-                );
+                alert("✅ Withdraw Request Submitted!");
 
                 withdrawForm.reset();
 
             } catch (error) {
 
-                console.error(
-                    "WITHDRAW ERROR:",
-                    error
-                );
+                console.error(error);
 
-                alert(
-                    "❌ Withdraw submit করা যায়নি: " +
-                    error.message
-                );
+                alert("❌ Withdraw submit করা যায়নি।");
 
             }
 
@@ -335,9 +263,9 @@ if (withdrawForm) {
 }
 
 
-// ========================================
+// ===============================
 // LOGOUT
-// ========================================
+// ===============================
 
 window.logoutUser = async function () {
 
@@ -349,7 +277,7 @@ window.logoutUser = async function () {
 
     } catch (error) {
 
-        console.error("LOGOUT ERROR:", error);
+        console.error(error);
 
         alert("❌ Logout failed.");
 
@@ -358,35 +286,24 @@ window.logoutUser = async function () {
 };
 
 
-// ========================================
+// ===============================
 // GAME BUTTONS
-// ========================================
+// ===============================
 
 const playButtons =
-    document.querySelectorAll(
-        ".game-card button"
-    );
+    document.querySelectorAll(".game-card button");
 
 playButtons.forEach(function (btn) {
 
-    btn.addEventListener(
-        "click",
-        function () {
+    btn.addEventListener("click", function () {
 
-            alert(
-                "🎮 Game Coming Soon..."
-            );
+        alert("🎮 Game Coming Soon...");
 
-        }
-    );
+    });
 
 });
 
 
-// ========================================
-// PAGE LOAD
-// ========================================
-
 console.log(
-    "🔥 JISANBD6666 Firebase system loaded successfully!"
+    "🔥 JISANBD6666 Firebase system loaded!"
 );
