@@ -1,6 +1,6 @@
 /* ==================================================
    JISANBD6666
-   PREMIUM DARK + NEON DESIGN
+   FINAL STYLE
 ================================================== */
 
 
@@ -14,11 +14,9 @@
     box-sizing: border-box;
 }
 
-
 html {
     scroll-behavior: smooth;
 }
-
 
 body {
     min-height: 100vh;
@@ -26,9 +24,9 @@ body {
     background:
         radial-gradient(
             circle at 50% 0%,
-            #102b1b 0%,
-            #07110b 25%,
-            #050505 60%
+            #12351f 0%,
+            #08130c 28%,
+            #050505 65%
         );
 
     color: #ffffff;
@@ -44,21 +42,19 @@ body {
    HEADER
 ========================= */
 
-.top-header {
+.main-header {
     width: 100%;
-
     min-height: 72px;
 
-    padding: 15px 6%;
+    padding: 12px 5%;
 
     display: flex;
-
     align-items: center;
+    justify-content: space-between;
 
-    justify-content: center;
+    gap: 20px;
 
-    background:
-        rgba(5, 5, 5, 0.95);
+    background: rgba(5, 5, 5, 0.96);
 
     border-bottom:
         1px solid #00ff66;
@@ -68,17 +64,977 @@ body {
         rgba(0, 255, 102, 0.12);
 
     position: sticky;
-
     top: 0;
 
     z-index: 1000;
 }
 
 
-.brand {
+/* =========================
+   LOGO
+========================= */
+
+.main-logo {
+    color: #00ff66;
+
     text-decoration: none;
 
+    font-size: 28px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 0 10px #00ff66,
+        0 0 25px
+        rgba(0, 255, 102, 0.65);
+
+    transition: 0.25s;
+}
+
+.main-logo:hover {
+    transform: scale(1.04);
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.main-nav {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 18px;
+
+    flex-wrap: wrap;
+}
+
+.main-nav a {
+    color: #cccccc;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.main-nav a:hover {
     color: #00ff66;
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+.logout-btn {
+    padding:
+        8px 15px;
+
+    border:
+        1px solid #00ff66;
+
+    border-radius: 7px;
+
+    background:
+        transparent;
+
+    color:
+        #00ff66;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.logout-btn:hover {
+    background: #00ff66;
+
+    color: #001b0a;
+
+    box-shadow:
+        0 0 15px
+        rgba(0, 255, 102, 0.4);
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 480px;
+
+    padding:
+        70px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #174629 0%,
+            #0a1d11 30%,
+            #050505 75%
+        );
+
+    border-bottom:
+        1px solid
+        rgba(0, 255, 102, 0.35);
+}
+
+.hero-content {
+    width: 100%;
+
+    max-width: 1250px;
+}
+
+.hero-logo {
+    font-size:
+        clamp(58px, 12vw, 155px);
+
+    line-height: 0.95;
+
+    font-weight: 900;
+
+    letter-spacing: 5px;
+
+    color: #00ff66;
+
+    text-shadow:
+        0 0 10px #00ff66,
+        0 0 25px #00ff66,
+        0 0 55px #00ff66,
+        0 0 100px
+        rgba(0, 255, 102, 0.5);
+
+    word-break: break-word;
+}
+
+.hero-title {
+    margin-top: 28px;
+
+    color: #ffffff;
+
+    font-size:
+        clamp(20px, 4vw, 42px);
+}
+
+.hero-text {
+    margin-top: 12px;
+
+    color: #999999;
+
+    font-size: 16px;
+}
+
+.hero-btn {
+    display: inline-block;
+
+    margin-top: 30px;
+
+    padding:
+        14px 34px;
+
+    border-radius: 30px;
+
+    background:
+        #00ff66;
+
+    color:
+        #001b0a;
+
+    text-decoration: none;
+
+    font-weight: 900;
+
+    box-shadow:
+        0 0 25px
+        rgba(0, 255, 102, 0.3);
+
+    transition: 0.25s;
+}
+
+.hero-btn:hover {
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 0 40px
+        rgba(0, 255, 102, 0.55);
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.main-container {
+    width: 94%;
+
+    max-width: 1200px;
+
+    margin:
+        45px auto;
+}
+
+
+/* =========================
+   BOX
+========================= */
+
+.box {
+    margin-bottom: 45px;
+
+    padding: 25px;
+
+    background:
+        rgba(10, 10, 10, 0.65);
+
+    border:
+        1px solid #1e1e1e;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 0 25px
+        rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.section-title {
+    text-align: center;
+
+    color: #00ff66;
+
+    font-size: 30px;
+
+    margin-bottom: 25px;
+
+    text-shadow:
+        0 0 12px
+        rgba(0, 255, 102, 0.25);
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+.dashboard-card {
+    padding: 20px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #151515,
+            #0a0a0a
+        );
+
+    border:
+        1px solid #252525;
+
+    border-radius: 12px;
+}
+
+.dashboard-card span {
+    display: block;
+
+    color: #777777;
+
+    font-size: 12px;
+
+    margin-bottom: 8px;
+}
+
+.dashboard-card strong {
+    color: #00ff66;
+
+    font-size: 24px;
+}
+
+
+/* ==================================================
+   AVIATOR
+================================================== */
+
+.aviator-game {
+    max-width: 900px;
+
+    margin:
+        0 auto 45px;
+
+    padding: 25px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #123d24,
+            #080808 70%
+        );
+
+    border:
+        1px solid #00ff66;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 0 30px
+        rgba(0, 255, 102, 0.15);
+
+    text-align: center;
+}
+
+
+/* =========================
+   AVIATOR HEADER
+========================= */
+
+.aviator-header h2 {
+    color: #00ff66;
+
+    font-size: 34px;
+
+    margin-bottom: 5px;
+
+    text-shadow:
+        0 0 12px
+        rgba(0, 255, 102, 0.4);
+}
+
+.aviator-header p {
+    color: #777777;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   AVIATOR SCREEN
+========================= */
+
+.aviator-screen {
+    height: 330px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            180deg,
+            #071b2c,
+            #050505
+        );
+
+    border:
+        1px solid #222222;
+
+    border-radius: 14px;
+
+    box-shadow:
+        inset 0 0 40px
+        rgba(0, 0, 0, 0.5);
+}
+
+
+/* =========================
+   MULTIPLIER
+========================= */
+
+#multiplier {
+    position: relative;
+
+    z-index: 3;
+
+    font-size:
+        clamp(48px, 8vw, 70px);
+
+    font-weight: 900;
+
+    color: #00ff66;
+
+    text-shadow:
+        0 0 15px #00ff66,
+        0 0 35px
+        rgba(0, 255, 102, 0.6);
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+#aviatorStatus {
+    margin-top: 10px;
+
+    color: #aaaaaa;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   PLANE
+========================= */
+
+.plane {
+    position: absolute;
+
+    left: 8%;
+
+    bottom: 25%;
+
+    font-size: 55px;
+
+    opacity: 0.95;
+
+    filter:
+        drop-shadow(
+            0 0 10px
+            rgba(255, 255, 255, 0.3)
+        );
+}
+
+.plane.flying {
+    animation:
+        planeFly 5s linear forwards;
+}
+
+
+@keyframes planeFly {
+
+    0% {
+        left: 8%;
+        bottom: 20%;
+        transform: rotate(0deg);
+    }
+
+    25% {
+        left: 28%;
+        bottom: 30%;
+        transform: rotate(-4deg);
+    }
+
+    50% {
+        left: 50%;
+        bottom: 45%;
+        transform: rotate(-6deg);
+    }
+
+    75% {
+        left: 75%;
+        bottom: 60%;
+        transform: rotate(-8deg);
+    }
+
+    100% {
+        left: 105%;
+        bottom: 78%;
+        transform: rotate(-10deg);
+    }
+}
+
+
+/* =========================
+   AVIATOR INFO
+========================= */
+
+.aviator-info {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+.aviator-info > div {
+    padding: 15px;
+
+    background:
+        #111111;
+
+    border:
+        1px solid #252525;
+
+    border-radius: 10px;
+}
+
+.aviator-info span {
+    display: block;
+
+    color: #777777;
+
+    font-size: 12px;
+
+    margin-bottom: 7px;
+}
+
+.aviator-info strong {
+    color: #00ff66;
+
+    font-size: 23px;
+}
+
+
+/* =========================
+   AVIATOR BET INPUT
+========================= */
+
+#aviatorBet {
+    width: 100%;
+
+    height: 40px;
+
+    padding:
+        0 12px;
+
+    background:
+        #181818;
+
+    border:
+        1px solid #333333;
+
+    border-radius: 7px;
+
+    color: #ffffff;
+
+    outline: none;
+}
+
+#aviatorBet:focus {
+    border-color:
+        #00ff66;
+
+    box-shadow:
+        0 0 10px
+        rgba(0, 255, 102, 0.12);
+}
+
+
+/* =========================
+   AVIATOR BUTTONS
+========================= */
+
+.aviator-buttons {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 15px;
+
+    margin-top: 18px;
+}
+
+.aviator-buttons button {
+    min-height: 50px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+#aviatorStart {
+    background:
+        #00ff66;
+
+    color:
+        #001b0a;
+}
+
+#aviatorCashout {
+    background:
+        #ffd21f;
+
+    color:
+        #111111;
+}
+
+.aviator-buttons button:hover:not(:disabled) {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 0 20px
+        rgba(0, 255, 102, 0.35);
+}
+
+.aviator-buttons button:disabled {
+    opacity: 0.35;
+
+    cursor:
+        not-allowed;
+}
+
+
+/* ==================================================
+   GAME GRID
+================================================== */
+
+.game-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+
+/* =========================
+   GAME CARD
+========================= */
+
+.game-card {
+    min-height: 225px;
+
+    padding: 22px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #151515,
+            #090909
+        );
+
+    border:
+        1px solid #242424;
+
+    border-radius: 15px;
+
+    transition: 0.3s;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.game-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 120px;
+
+    height: 120px;
+
+    top: -70px;
+
+    right: -70px;
+
+    background:
+        rgba(0, 255, 102, 0.06);
+
+    border-radius: 50%;
+}
+
+.game-card:hover {
+    transform:
+        translateY(-7px);
+
+    border-color:
+        #00ff66;
+
+    box-shadow:
+        0 0 25px
+        rgba(0, 255, 102, 0.17);
+}
+
+
+/* =========================
+   GAME ICON
+========================= */
+
+.game-icon {
+    font-size: 55px;
+
+    margin-bottom: 12px;
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            rgba(0, 255, 102, 0.15)
+        );
+}
+
+
+/* =========================
+   GAME TITLE
+========================= */
+
+.game-card h3 {
+    color: #ffffff;
+
+    font-size: 19px;
+
+    margin-bottom: 7px;
+}
+
+.game-card p {
+    color: #777777;
+
+    font-size: 12px;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================
+   GAME BUTTON
+========================= */
+
+.game-card button {
+    min-width: 110px;
+
+    padding:
+        9px 20px;
+
+    border: none;
+
+    border-radius: 20px;
+
+    background:
+        #00ff66;
+
+    color:
+        #001b0a;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.game-card button:hover {
+    transform:
+        scale(1.04);
+
+    box-shadow:
+        0 0 18px
+        rgba(0, 255, 102, 0.4);
+}
+
+
+/* ==================================================
+   WALLET
+================================================== */
+
+.action-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+.action-card {
+    padding: 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #141414,
+            #0a0a0a
+        );
+
+    border:
+        1px solid #252525;
+
+    border-radius: 14px;
+}
+
+.action-card h3 {
+    color: #00ff66;
+
+    margin-bottom: 10px;
+
+    font-size: 22px;
+}
+
+.action-card p {
+    color: #777777;
+
+    font-size: 13px;
+
+    margin-bottom: 12px;
+}
+
+
+/* =========================
+   INPUTS
+========================= */
+
+.action-card input {
+    width: 100%;
+
+    height: 48px;
+
+    padding:
+        0 13px;
+
+    margin:
+        6px 0;
+
+    background:
+        #181818;
+
+    color:
+        #ffffff;
+
+    border:
+        1px solid #292929;
+
+    border-radius: 7px;
+
+    outline: none;
+}
+
+.action-card input:focus {
+    border-color:
+        #00ff66;
+
+    box-shadow:
+        0 0 10px
+        rgba(0, 255, 102, 0.1);
+}
+
+
+/* =========================
+   ACTION BUTTON
+========================= */
+
+.action-card button {
+    width: 100%;
+
+    height: 48px;
+
+    margin-top: 10px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background:
+        #00ff66;
+
+    color:
+        #001b0a;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.action-card button:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 0 18px
+        rgba(0, 255, 102, 0.35);
+}
+
+
+/* ==================================================
+   LOGIN / REGISTER
+================================================== */
+
+.top-header {
+    width: 100%;
+
+    min-height: 72px;
+
+    padding:
+        15px 6%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        rgba(5, 5, 5, 0.96);
+
+    border-bottom:
+        1px solid #00ff66;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+}
+
+.brand {
+    color: #00ff66;
+
+    text-decoration: none;
 
     font-size: 30px;
 
@@ -87,66 +1043,37 @@ body {
     letter-spacing: 3px;
 
     text-shadow:
-        0 0 8px #00ff66,
-        0 0 20px #00ff66,
-        0 0 40px
-        rgba(0, 255, 102, 0.6);
-
-    transition: 0.3s;
+        0 0 10px #00ff66,
+        0 0 25px
+        rgba(0, 255, 102, 0.5);
 }
-
-
-.brand:hover {
-    transform: scale(1.05);
-
-    text-shadow:
-        0 0 12px #00ff66,
-        0 0 30px #00ff66,
-        0 0 60px #00ff66;
-}
-
-
-/* =========================
-   AUTH PAGE
-========================= */
 
 .auth-page {
-
     width: 100%;
 
-    min-height: calc(100vh - 72px);
+    min-height:
+        calc(100vh - 72px);
 
     padding:
         55px 20px;
-
 }
 
-
 .auth-wrapper {
-
     width: 100%;
 
     max-width: 560px;
 
-    margin: auto;
-
+    margin:
+        auto;
 }
 
-
-/* =========================
-   BIG LOGIN LOGO
-========================= */
-
 .auth-brand {
-
     text-align: center;
 
     margin-bottom: 35px;
 }
 
-
 .auth-logo {
-
     font-size:
         clamp(48px, 10vw, 92px);
 
@@ -167,25 +1094,15 @@ body {
     word-break: break-word;
 }
 
-
 .auth-brand p {
-
     margin-top: 18px;
 
-    color: #aaa;
+    color: #888888;
 
-    font-size: 16px;
-
-    letter-spacing: 1px;
+    font-size: 14px;
 }
 
-
-/* =========================
-   AUTH CARD
-========================= */
-
 .auth-card {
-
     width: 100%;
 
     padding: 32px;
@@ -201,41 +1118,16 @@ body {
 
     border:
         1px solid
-        rgba(0, 255, 102, 0.55);
+        rgba(0, 255, 102, 0.5);
 
     border-radius: 18px;
 
     box-shadow:
-        0 0 15px
-        rgba(0, 255, 102, 0.08),
-
-        inset 0 0 25px
-        rgba(0, 255, 102, 0.025);
-
-    transition: 0.3s;
-}
-
-
-.auth-card:hover {
-
-    border-color: #00ff66;
-
-    box-shadow:
         0 0 25px
-        rgba(0, 255, 102, 0.15),
-
-        inset 0 0 30px
-        rgba(0, 255, 102, 0.04);
-
+        rgba(0, 255, 102, 0.08);
 }
-
-
-/* =========================
-   AUTH ICON
-========================= */
 
 .auth-icon {
-
     width: 65px;
 
     height: 65px;
@@ -259,20 +1151,10 @@ body {
         rgba(0, 255, 102, 0.5);
 
     font-size: 28px;
-
-    box-shadow:
-        0 0 20px
-        rgba(0, 255, 102, 0.15);
 }
-
-
-/* =========================
-   HEADINGS
-========================= */
 
 .auth-card h1,
 .auth-card h2 {
-
     text-align: center;
 
     color: #ffffff;
@@ -282,34 +1164,24 @@ body {
     margin-bottom: 8px;
 }
 
-
 .auth-card h1 {
-
     color: #00ff66;
 }
 
-
 .auth-subtitle {
-
     text-align: center;
 
-    color: #888;
+    color: #888888;
 
     margin-bottom: 25px;
 
     font-size: 14px;
 }
 
-
-/* =========================
-   LABEL
-========================= */
-
 .auth-card label {
-
     display: block;
 
-    color: #bbb;
+    color: #bbbbbb;
 
     font-size: 13px;
 
@@ -319,13 +1191,7 @@ body {
         14px 0 7px;
 }
 
-
-/* =========================
-   INPUT
-========================= */
-
 .auth-card input {
-
     width: 100%;
 
     height: 50px;
@@ -336,47 +1202,29 @@ body {
     background:
         #161616;
 
-    color: #ffffff;
+    color:
+        #ffffff;
 
     border:
-        1px solid
-        #2b2b2b;
+        1px solid #2b2b2b;
 
     border-radius: 9px;
 
     outline: none;
 
     font-size: 14px;
-
-    transition: 0.25s;
 }
-
-
-.auth-card input::placeholder {
-
-    color: #666;
-}
-
 
 .auth-card input:focus {
-
-    border-color: #00ff66;
+    border-color:
+        #00ff66;
 
     box-shadow:
         0 0 12px
         rgba(0, 255, 102, 0.15);
-
-    background:
-        #111;
 }
 
-
-/* =========================
-   PRIMARY BUTTON
-========================= */
-
 .primary-btn {
-
     width: 100%;
 
     height: 52px;
@@ -395,178 +1243,59 @@ body {
             #00cc55
         );
 
-    color: #001b0a;
+    color:
+        #001b0a;
 
     font-size: 14px;
 
     font-weight: 900;
-
-    letter-spacing: 1px;
 
     cursor: pointer;
 
     box-shadow:
         0 0 15px
         rgba(0, 255, 102, 0.25);
-
-    transition: 0.25s;
 }
 
-
 .primary-btn:hover {
-
-    transform:
-        translateY(-2px);
-
     box-shadow:
         0 0 25px
         rgba(0, 255, 102, 0.5);
-}
-
-
-.primary-btn:active {
 
     transform:
-        translateY(0);
+        translateY(-2px);
 }
-
-
-/* =========================
-   DIVIDER
-========================= */
-
-.auth-divider {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    margin:
-        25px 0;
-}
-
-
-.auth-divider::before,
-.auth-divider::after {
-
-    content: "";
-
-    flex: 1;
-
-    height: 1px;
-
-    background:
-        #292929;
-}
-
-
-.auth-divider span {
-
-    color: #666;
-
-    font-size: 12px;
-
-    font-weight: bold;
-}
-
-
-/* =========================
-   SWITCH TEXT
-========================= */
 
 .switch-text {
-
     text-align: center;
 
-    color: #888;
+    color: #888888;
 
     font-size: 14px;
 
     margin-top: 20px;
 }
 
-
 .switch-text a {
-
     color: #00ff66;
 
     font-weight: bold;
 
     text-decoration: none;
-
-    margin-left: 4px;
 }
 
 
-.switch-text a:hover {
-
-    text-decoration: underline;
-}
-
-
-/* =========================
-   REGISTER CARD
-========================= */
-
-.register-card {
-
-    border-color:
-        rgba(0, 255, 102, 0.35);
-}
-
-
-/* =========================
-   INFO BADGES
-========================= */
-
-.auth-info {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 8px;
-
-    margin-top: 25px;
-}
-
-
-.auth-info span {
-
-    padding: 12px 5px;
-
-    text-align: center;
-
-    font-size: 11px;
-
-    color: #999;
-
-    background:
-        rgba(255, 255, 255, 0.025);
-
-    border:
-        1px solid
-        #222;
-
-    border-radius: 8px;
-}
-
-
-/* =========================
+/* ==================================================
    FOOTER
-========================= */
+================================================== */
 
 .site-footer {
-
     text-align: center;
 
     padding:
-        30px 20px;
+        35px 20px;
 
-    color: #666;
+    color: #666666;
 
     border-top:
         1px solid #171717;
@@ -574,637 +1303,116 @@ body {
     font-size: 12px;
 }
 
-
 .site-footer strong {
-
     color: #00ff66;
 
-    font-size: 15px;
+    font-size: 17px;
 
     letter-spacing: 1px;
 }
 
-
 .site-footer p {
-
-    margin-top: 7px;
+    margin-top: 8px;
 }
 
 
 /* ==================================================
-   MAIN WEBSITE DESIGN
-   এই অংশ পরের index.html-এর জন্য
+   RESPONSIVE
 ================================================== */
 
-
-/* =========================
-   MAIN HEADER
-========================= */
-
-.main-header {
-
-    min-height: 72px;
-
-    padding:
-        12px 5%;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 20px;
-
-    background:
-        rgba(5, 5, 5, 0.95);
-
-    border-bottom:
-        1px solid #00ff66;
-
-    position: sticky;
-
-    top: 0;
-
-    z-index: 1000;
-}
-
-
-.main-logo {
-
-    color: #00ff66;
-
-    text-decoration: none;
-
-    font-size: 26px;
-
-    font-weight: 900;
-
-    letter-spacing: 2px;
-
-    text-shadow:
-        0 0 10px #00ff66,
-        0 0 25px
-        rgba(0, 255, 102, 0.5);
-}
-
-
-.main-nav {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 18px;
-
-    flex-wrap: wrap;
-}
-
-
-.main-nav a {
-
-    color: #ddd;
-
-    text-decoration: none;
-
-    font-size: 13px;
-
-    transition: 0.2s;
-}
-
-
-.main-nav a:hover {
-
-    color: #00ff66;
-}
-
-
-/* =========================
-   HERO BANNER
-========================= */
-
-.hero {
-
-    min-height: 470px;
-
-    padding:
-        70px 20px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    text-align: center;
-
-    background:
-        radial-gradient(
-            circle at center,
-            #123d24 0%,
-            #0a1d11 28%,
-            #050505 72%
-        );
-
-    border-bottom:
-        1px solid
-        rgba(0, 255, 102, 0.35);
-}
-
-
-.hero-content {
-
-    width: 100%;
-
-    max-width: 1200px;
-}
-
-
-.hero-logo {
-
-    font-size:
-        clamp(60px, 11vw, 150px);
-
-    line-height: 0.95;
-
-    font-weight: 900;
-
-    letter-spacing: 5px;
-
-    color: #00ff66;
-
-    text-shadow:
-        0 0 10px #00ff66,
-        0 0 25px #00ff66,
-        0 0 55px #00ff66,
-        0 0 100px
-        rgba(0, 255, 102, 0.5);
-
-    word-break: break-word;
-}
-
-
-.hero-title {
-
-    margin-top: 25px;
-
-    font-size:
-        clamp(20px, 4vw, 42px);
-
-    color: #ffffff;
-}
-
-
-.hero-text {
-
-    margin-top: 12px;
-
-    color: #999;
-
-    font-size: 16px;
-}
-
-
-.hero-btn {
-
-    display: inline-block;
-
-    margin-top: 30px;
-
-    padding:
-        15px 35px;
-
-    border-radius: 30px;
-
-    background: #00ff66;
-
-    color: #001b0a;
-
-    font-weight: 900;
-
-    text-decoration: none;
-
-    box-shadow:
-        0 0 25px
-        rgba(0, 255, 102, 0.35);
-
-    transition: 0.25s;
-}
-
-
-.hero-btn:hover {
-
-    transform:
-        translateY(-3px);
-
-    box-shadow:
-        0 0 40px
-        rgba(0, 255, 102, 0.55);
-}
-
-
-/* =========================
-   CONTENT
-========================= */
-
-.main-container {
-
-    width: 94%;
-
-    max-width: 1200px;
-
-    margin:
-        45px auto;
-}
-
-
-.section-title {
-
-    text-align: center;
-
-    color: #00ff66;
-
-    font-size: 30px;
-
-    margin-bottom: 25px;
-}
-
-
-/* =========================
-   GAME GRID
-========================= */
-
-.game-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 18px;
-}
-
-
-.game-card {
-
-    min-height: 210px;
-
-    padding: 22px;
-
-    text-align: center;
-
-    background:
-        linear-gradient(
-            145deg,
-            #151515,
-            #090909
-        );
-
-    border:
-        1px solid
-        #242424;
-
-    border-radius: 15px;
-
-    transition: 0.3s;
-
-    overflow: hidden;
-
-    position: relative;
-}
-
-
-.game-card:hover {
-
-    transform:
-        translateY(-6px);
-
-    border-color:
-        #00ff66;
-
-    box-shadow:
-        0 0 25px
-        rgba(0, 255, 102, 0.18);
-}
-
-
-.game-icon {
-
-    font-size: 48px;
-
-    margin-bottom: 12px;
-}
-
-
-.game-card h3 {
-
-    color: #ffffff;
-
-    margin-bottom: 8px;
-}
-
-
-.game-card p {
-
-    color: #777;
-
-    font-size: 12px;
-
-    margin-bottom: 15px;
-}
-
-
-.game-card button {
-
-    border: none;
-
-    background:
-        #00ff66;
-
-    color: #001b0a;
-
-    font-weight: bold;
-
-    padding:
-        9px 20px;
-
-    border-radius: 20px;
-
-    cursor: pointer;
-}
-
-
-/* =========================
-   FEATURED GAME
-========================= */
-
-.featured-game {
-
-    grid-column:
-        span 2;
-
-    min-height: 270px;
-
-    background:
-        radial-gradient(
-            circle at center,
-            #153d25,
-            #090909 70%
-        );
-
-    border-color:
-        rgba(0, 255, 102, 0.5);
-}
-
-
-.featured-game .game-icon {
-
-    font-size: 70px;
-}
-
-
-/* =========================
-   DASHBOARD CARDS
-========================= */
-
-.dashboard-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 15px;
-}
-
-
-.dashboard-card {
-
-    padding: 20px;
-
-    background: #111;
-
-    border:
-        1px solid #222;
-
-    border-radius: 12px;
-
-    text-align: center;
-}
-
-
-.dashboard-card span {
-
-    display: block;
-
-    color: #777;
-
-    font-size: 12px;
-
-    margin-bottom: 8px;
-}
-
-
-.dashboard-card strong {
-
-    color: #00ff66;
-
-    font-size: 24px;
-}
-
-
-/* =========================
-   DEPOSIT / WITHDRAW
-========================= */
-
-.action-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 20px;
-}
-
-
-.action-card {
-
-    padding: 25px;
-
-    background: #101010;
-
-    border:
-        1px solid #252525;
-
-    border-radius: 14px;
-}
-
-
-.action-card h3 {
-
-    color: #00ff66;
-
-    margin-bottom: 15px;
-}
-
-
-.action-card input {
-
-    width: 100%;
-
-    height: 48px;
-
-    padding: 0 13px;
-
-    margin:
-        6px 0;
-
-    background: #181818;
-
-    color: white;
-
-    border:
-        1px solid #292929;
-
-    border-radius: 7px;
-
-    outline: none;
-}
-
-
-.action-card input:focus {
-
-    border-color:
-        #00ff66;
-}
-
-
-/* =========================
-  খেলো আর জিতো
-========================= */
-
-@media (max-width: 900px) {
+@media (max-width: 950px) {
 
     .game-grid {
-
         grid-template-columns:
             repeat(2, 1fr);
-
     }
 
 }
 
 
-@media (max-width: 700px) {
-
-    .top-header {
-
-        min-height: 65px;
-
-    }
-
-
-    .brand {
-
-        font-size: 22px;
-
-        letter-spacing: 2px;
-
-    }
-
-
-    .auth-page {
-
-        padding:
-            35px 14px;
-
-    }
-
-
-    .auth-card {
-
-        padding: 22px 18px;
-
-        border-radius: 14px;
-
-    }
-
-
-    .auth-info {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
-    }
-
+@media (max-width: 750px) {
 
     .main-header {
-
         flex-direction: column;
 
         padding:
             15px;
-
     }
-
 
     .main-nav {
-
-        justify-content: center;
-
+        gap: 12px;
     }
 
-
     .hero {
-
-        min-height: 400px;
+        min-height: 410px;
 
         padding:
             55px 15px;
-
     }
-
-
-    .hero-logo {
-
-        font-size:
-            clamp(48px, 14vw, 85px);
-
-        letter-spacing: 2px;
-
-    }
-
-
-    .game-grid {
-
-        grid-template-columns:
-            1fr;
-
-    }
-
-
-    .featured-game {
-
-        grid-column:
-            span 1;
-
-    }
-
 
     .dashboard-grid {
-
         grid-template-columns:
             1fr;
-
     }
 
-
     .action-grid {
-
         grid-template-columns:
             1fr;
+    }
 
+    .aviator-game {
+        margin-left: 0;
+
+        margin-right: 0;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .main-container {
+        width: 96%;
+    }
+
+    .box {
+        padding:
+            18px;
+    }
+
+    .game-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .aviator-screen {
+        height: 270px;
+    }
+
+    .aviator-info {
+        grid-template-columns:
+            1fr;
+    }
+
+    .aviator-buttons {
+        grid-template-columns:
+            1fr;
+    }
+
+    .auth-page {
+        padding:
+            35px 14px;
+    }
+
+    .auth-card {
+        padding:
+            22px 18px;
+    }
+
+    .auth-logo {
+        font-size: 43px;
+
+        letter-spacing: 2px;
     }
 
 }
@@ -1212,35 +1420,30 @@ body {
 
 @media (max-width: 420px) {
 
-    .auth-logo {
-
-        font-size: 43px;
-
-        letter-spacing: 2px;
-
+    .main-logo {
+        font-size: 23px;
     }
 
-
-    .auth-card h1,
-    .auth-card h2 {
-
-        font-size: 24px;
-
+    .main-nav a {
+        font-size: 11px;
     }
 
+    .hero-logo {
+        font-size:
+            48px;
 
-    .auth-info {
-
-        grid-template-columns:
-            1fr 1fr;
-
+        letter-spacing:
+            2px;
     }
 
+    .section-title {
+        font-size:
+            25px;
+    }
 
-    .auth-info span {
-
-        font-size: 10px;
-
+    .game-card {
+        min-height:
+            205px;
     }
 
 }
