@@ -15,7 +15,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
-    apiKey: "তোমার screenshot-এর API key এখানে বসাও",
+    apiKey: "AIzaSyB-gS6vRbVyfMn8jH8oLsQ6njayobuCic0",
     authDomain: "jisanbd6666.firebaseapp.com",
     projectId: "jisanbd6666",
     storageBucket: "jisanbd6666.firebasestorage.app",
