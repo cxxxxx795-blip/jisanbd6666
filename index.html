@@ -27,7 +27,6 @@
 
 <header class="main-header">
 
-
     <a
         href="index.html"
         class="main-logo">
@@ -65,7 +64,8 @@
 
         <button
             id="logoutButton"
-            class="logout-btn">
+            class="logout-btn"
+            type="button">
 
             Logout
 
@@ -78,37 +78,26 @@
 
 
 <!-- ==================================================
-     HERO / BIG BANNER
+     HERO
 ================================================== -->
 
 <section
     class="hero"
     id="home">
 
-
     <div class="hero-content">
 
-
         <div class="hero-logo">
-
             JISANBD6666
-
         </div>
 
-
         <h1 class="hero-title">
-
             WELCOME TO OUR GAMING WORLD
-
         </h1>
 
-
         <p class="hero-text">
-
             🎮 Play • Enjoy • Explore
-
         </p>
-
 
         <a
             href="#games"
@@ -118,7 +107,6 @@
 
         </a>
 
-
     </div>
 
 </section>
@@ -126,7 +114,7 @@
 
 
 <!-- ==================================================
-     MAIN CONTENT
+     MAIN
 ================================================== -->
 
 <main class="main-container">
@@ -134,16 +122,13 @@
 
 
 <!-- ==================================================
-     USER DASHBOARD
+     ACCOUNT
 ================================================== -->
 
 <section class="box">
 
-
     <h2 class="section-title">
-
         👤 MY ACCOUNT
-
     </h2>
 
 
@@ -158,7 +143,7 @@
 
             <strong
                 id="userEmail"
-                style="font-size: 15px;">
+                style="font-size:15px;">
 
                 Loading...
 
@@ -200,7 +185,113 @@
 
 
 <!-- ==================================================
-     FEATURED GAMES
+     PLAYABLE AVIATOR
+================================================== -->
+
+<section
+    class="aviator-game"
+    id="aviator">
+
+
+    <div class="aviator-header">
+
+        <h2>
+            ✈️ AVIATOR
+        </h2>
+
+        <p>
+            Virtual Points Game
+        </p>
+
+    </div>
+
+
+    <div class="aviator-screen">
+
+
+        <div class="plane">
+            ✈️
+        </div>
+
+
+        <div id="multiplier">
+            1.00x
+        </div>
+
+
+        <div id="aviatorStatus">
+            Press START to fly
+        </div>
+
+
+    </div>
+
+
+    <div class="aviator-info">
+
+
+        <div>
+
+            <span>
+                Virtual Points
+            </span>
+
+            <strong id="virtualBalance">
+                1000
+            </strong>
+
+        </div>
+
+
+        <div>
+
+            <span>
+                Bet
+            </span>
+
+            <input
+                id="aviatorBet"
+                type="number"
+                value="50"
+                min="1"
+                max="1000">
+
+        </div>
+
+
+    </div>
+
+
+    <div class="aviator-buttons">
+
+
+        <button
+            id="aviatorStart"
+            type="button">
+
+            🚀 START
+
+        </button>
+
+
+        <button
+            id="aviatorCashout"
+            type="button"
+            disabled>
+
+            💰 CASH OUT
+
+        </button>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     GAMES
 ================================================== -->
 
 <section
@@ -209,45 +300,11 @@
 
 
     <h2 class="section-title">
-
-        🔥 FEATURED GAMES
-
+        🎮 MORE GAMES
     </h2>
 
 
     <div class="game-grid">
-
-
-        <!-- AVIATOR -->
-
-        <div class="game-card featured-game">
-
-
-            <div class="game-icon">
-                ✈️
-            </div>
-
-
-            <h3>
-                Aviator
-            </h3>
-
-
-            <p>
-                Aircraft multiplier demo
-            </p>
-
-
-            <button
-                type="button"
-                onclick="alert('✈️ Aviator Demo Coming Soon!')">
-
-                PLAY DEMO
-
-            </button>
-
-
-        </div>
 
 
 
@@ -255,30 +312,25 @@
 
         <div class="game-card">
 
-
             <div class="game-icon">
                 🎰
             </div>
-
 
             <h3>
                 Slot Machine
             </h3>
 
-
             <p>
-                Classic slot demo
+                Spin the reels
             </p>
-
 
             <button
                 type="button"
-                onclick="alert('🎰 Slot Demo Coming Soon!')">
+                onclick="playSlot()">
 
-                PLAY DEMO
+                PLAY
 
             </button>
-
 
         </div>
 
@@ -288,30 +340,25 @@
 
         <div class="game-card">
 
-
             <div class="game-icon">
                 🎡
             </div>
-
 
             <h3>
                 Lucky Spin
             </h3>
 
-
             <p>
-                Spin wheel demo
+                Spin the wheel
             </p>
-
 
             <button
                 type="button"
-                onclick="alert('🎡 Lucky Spin Demo Coming Soon!')">
+                onclick="playLuckySpin()">
 
-                PLAY DEMO
+                PLAY
 
             </button>
-
 
         </div>
 
@@ -321,30 +368,25 @@
 
         <div class="game-card">
 
-
             <div class="game-icon">
                 💎
             </div>
-
 
             <h3>
                 Mines
             </h3>
 
-
             <p>
-                Grid puzzle demo
+                Find safe tiles
             </p>
-
 
             <button
                 type="button"
-                onclick="alert('💎 Mines Demo Coming Soon!')">
+                onclick="playMines()">
 
-                PLAY DEMO
+                PLAY
 
             </button>
-
 
         </div>
 
@@ -354,30 +396,25 @@
 
         <div class="game-card">
 
-
             <div class="game-icon">
                 🃏
             </div>
-
 
             <h3>
                 Blackjack
             </h3>
 
-
             <p>
-                Card game demo
+                Card game
             </p>
-
 
             <button
                 type="button"
-                onclick="alert('🃏 Blackjack Demo Coming Soon!')">
+                onclick="playBlackjack()">
 
-                PLAY DEMO
+                PLAY
 
             </button>
-
 
         </div>
 
@@ -387,30 +424,25 @@
 
         <div class="game-card">
 
-
             <div class="game-icon">
                 🎲
             </div>
-
 
             <h3>
                 Dice
             </h3>
 
-
             <p>
-                Dice roll demo
+                Roll the dice
             </p>
-
 
             <button
                 type="button"
-                onclick="alert('🎲 Dice Demo Coming Soon!')">
+                onclick="playDice()">
 
-                PLAY DEMO
+                PLAY
 
             </button>
-
 
         </div>
 
@@ -420,30 +452,25 @@
 
         <div class="game-card">
 
-
             <div class="game-icon">
                 7️⃣
             </div>
-
 
             <h3>
                 Lucky 7
             </h3>
 
-
             <p>
-                Number game demo
+                Number game
             </p>
-
 
             <button
                 type="button"
-                onclick="alert('7️⃣ Lucky 7 Demo Coming Soon!')">
+                onclick="playLucky7()">
 
-                PLAY DEMO
+                PLAY
 
             </button>
-
 
         </div>
 
@@ -453,30 +480,25 @@
 
         <div class="game-card">
 
-
             <div class="game-icon">
                 🚀
             </div>
-
 
             <h3>
                 Rocket
             </h3>
 
-
             <p>
-                Rocket multiplier demo
+                Rocket game
             </p>
-
 
             <button
                 type="button"
-                onclick="alert('🚀 Rocket Demo Coming Soon!')">
+                onclick="playRocket()">
 
-                PLAY DEMO
+                PLAY
 
             </button>
-
 
         </div>
 
@@ -486,30 +508,25 @@
 
         <div class="game-card">
 
-
             <div class="game-icon">
                 🪙
             </div>
-
 
             <h3>
                 Coin Flip
             </h3>
 
-
             <p>
-                Heads or tails demo
+                Heads or tails
             </p>
-
 
             <button
                 type="button"
-                onclick="alert('🪙 Coin Flip Demo Coming Soon!')">
+                onclick="playCoinFlip()">
 
-                PLAY DEMO
+                PLAY
 
             </button>
-
 
         </div>
 
@@ -519,30 +536,25 @@
 
         <div class="game-card">
 
-
             <div class="game-icon">
                 🎯
             </div>
-
 
             <h3>
                 Color Game
             </h3>
 
-
             <p>
-                Color prediction demo
+                Pick a color
             </p>
-
 
             <button
                 type="button"
-                onclick="alert('🎯 Color Game Demo Coming Soon!')">
+                onclick="playColorGame()">
 
-                PLAY DEMO
+                PLAY
 
             </button>
-
 
         </div>
 
@@ -561,9 +573,7 @@
 
 
     <h2 class="section-title">
-
         💰 WALLET
-
     </h2>
 
 
@@ -652,8 +662,7 @@
 
 
             <button
-                type="button"
-                onclick="alert('💸 Withdraw system will be connected next.')">
+                type="button">
 
                 SUBMIT WITHDRAW
 
@@ -679,9 +688,7 @@
 
 
     <h2 class="section-title">
-
         📜 TRANSACTION HISTORY
-
     </h2>
 
 
@@ -731,8 +738,11 @@
 
 
     <p
-        class="center"
-        style="color:#777; margin-top:20px;">
+        style="
+        text-align:center;
+        color:#777;
+        margin-top:20px;
+        ">
 
         Your transaction history will appear here.
 
@@ -744,7 +754,7 @@
 
 
 <!-- ==================================================
-     SUPPORT / CONTACT
+     CONTACT
 ================================================== -->
 
 <section
@@ -753,62 +763,29 @@
 
 
     <h2 class="section-title">
-
         📞 SUPPORT
-
     </h2>
 
 
-    <p class="center">
+    <p
+        style="
+        text-align:center;
+        color:#aaa;
+        ">
 
         Need help?
 
     </p>
 
 
-    <p class="center">
+    <p
+        style="
+        text-align:center;
+        color:#777;
+        margin-top:8px;
+        ">
 
         JISANBD6666 Support Center
-
-    </p>
-
-
-    <button
-        type="button"
-        onclick="alert('📞 Support system coming soon!')">
-
-        CONTACT SUPPORT
-
-    </button>
-
-
-</section>
-
-
-
-<!-- ==================================================
-     গেম খেলো আর জিতো
-================================================== -->
-
-<section class="box">
-
-
-    <h2 class="section-title">
-
-        সময় এখন আপনার
-
-    </h2>
-
-
-    <p class="center">
-
-
-    </p>
-
-
-    <p class="center">
-
-       
 
     </p>
 
@@ -833,12 +810,7 @@
 
 
     <p>
-        🎮 Gaming • Entertainment • Community
-    </p>
-
-
-    <p>
-        Play Responsibly
+        🎮 Gaming • Entertainment
     </p>
 
 
@@ -852,7 +824,7 @@
 
 
 <!-- ==================================================
-     SCRIPT
+     JAVASCRIPT
 ================================================== -->
 
 <script
