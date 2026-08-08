@@ -1,261 +1,869 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>JISANBD6666</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
+    <title>JISANBD6666 - Gaming</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        rel="stylesheet"
+        href="style.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-          rel="stylesheet">
 </head>
+
 
 <body>
 
-<header>
-    <div class="logo">JISANBD6666</div>
 
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#games">Games</a>
-        <a href="#deposit">Deposit</a>
-        <a href="#withdraw">Withdraw</a>
-        <a href="#history">History</a>
-        <a href="#contact">Contact</a>
-        <a href="#login">Login</a>
-        <a href="#register">Create Account</a>
+<!-- ==================================================
+     HEADER
+================================================== -->
+
+<header class="main-header">
+
+
+    <a
+        href="index.html"
+        class="main-logo">
+
+        JISANBD6666
+
+    </a>
+
+
+    <nav class="main-nav">
+
+        <a href="#home">
+            Home
+        </a>
+
+        <a href="#games">
+            Games
+        </a>
+
+        <a href="#deposit">
+            Deposit
+        </a>
+
+        <a href="#withdraw">
+            Withdraw
+        </a>
+
+        <a href="#history">
+            History
+        </a>
+
+        <a href="#contact">
+            Contact
+        </a>
+
+        <button
+            id="logoutButton"
+            class="logout-btn">
+
+            Logout
+
+        </button>
+
     </nav>
+
 </header>
 
 
-<section class="hero" id="home">
-    <h1>WELCOME TO JISANBD6666</h1>
-    <p>Play • Win • Earn</p>
 
-    <a href="#games">
-        <button type="button">Play Now</button>
-    </a>
-</section>
+<!-- ==================================================
+     HERO / BIG BANNER
+================================================== -->
 
-
-<section class="notice">
-    <p>🎉 Welcome to JISANBD6666</p>
-    <p>Minimum Deposit 300 TK</p>
-    <p>Minimum Withdraw 500 TK</p>
-    <p>Withdraw Time 10 AM - 12 AM</p>
-    <p>Play Responsibly</p>
-</section>
+<section
+    class="hero"
+    id="home">
 
 
-<!-- LOGIN -->
-
-<section class="login" id="login">
-
-    <h2>Login</h2>
-
-    <form>
-
-        <input
-            type="email"
-            placeholder="Email Address"
-            required
-        >
-
-        <input
-            type="password"
-            placeholder="Password"
-            required
-        >
-
-        <button type="submit">
-            Login
-        </button>
-
-    </form>
-
-</section>
+    <div class="hero-content">
 
 
-<!-- REGISTER -->
+        <div class="hero-logo">
 
-<section class="register" id="register">
+            JISANBD6666
 
-    <h2>Create Account</h2>
-
-    <form>
-
-        <input
-            type="text"
-            placeholder="Full Name"
-            required
-        >
-
-        <input
-            type="email"
-            placeholder="Email Address"
-            required
-        >
-
-        <input
-            type="tel"
-            placeholder="Mobile Number"
-            required
-        >
-
-        <input
-            type="password"
-            placeholder="Password"
-            minlength="6"
-            required
-        >
-
-        <button type="submit">
-            Create Account
-        </button>
-
-    </form>
-
-</section>
-
-
-<!-- GAMES -->
-
-<section class="games" id="games">
-
-    <h2>Games</h2>
-
-    <div class="game-container">
-
-        <div class="game-card">
-            <h3>🎮 Game 1</h3>
-            <p>Coming Soon</p>
-            <button type="button">Play</button>
         </div>
 
-        <div class="game-card">
-            <h3>🎯 Game 2</h3>
-            <p>Coming Soon</p>
-            <button type="button">Play</button>
-        </div>
 
-        <div class="game-card">
-            <h3>🏆 Game 3</h3>
-            <p>Coming Soon</p>
-            <button type="button">Play</button>
-        </div>
+        <h1 class="hero-title">
+
+            WELCOME TO OUR GAMING WORLD
+
+        </h1>
+
+
+        <p class="hero-text">
+
+            🎮 Play • Enjoy • Explore
+
+        </p>
+
+
+        <a
+            href="#games"
+            class="hero-btn">
+
+            PLAY NOW
+
+        </a>
+
 
     </div>
 
 </section>
 
 
-<!-- DEPOSIT -->
 
-<section class="deposit" id="deposit">
+<!-- ==================================================
+     MAIN CONTENT
+================================================== -->
 
-    <h2>Submit Deposit</h2>
-
-    <p>Minimum Deposit: 300 TK</p>
-
-    <form>
-
-        <input
-            type="number"
-            placeholder="Deposit Amount"
-            min="300"
-            required
-        >
-
-        <input
-            type="text"
-            placeholder="Transaction ID"
-            required
-        >
-
-        <button type="submit">
-            Submit Deposit
-        </button>
-
-    </form>
-
-</section>
+<main class="main-container">
 
 
-<!-- WITHDRAW -->
 
-<section class="withdraw" id="withdraw">
+<!-- ==================================================
+     USER DASHBOARD
+================================================== -->
 
-    <h2>Submit Withdraw</h2>
-
-    <p>Minimum Withdraw: 500 TK</p>
-
-    <form>
-
-        <input
-            type="text"
-            placeholder="bKash Number"
-            required
-        >
-
-        <input
-            type="number"
-            placeholder="Withdraw Amount"
-            min="500"
-            required
-        >
-
-        <button type="submit">
-            Submit Withdraw
-        </button>
-
-    </form>
-
-</section>
+<section class="box">
 
 
-<!-- HISTORY -->
+    <h2 class="section-title">
 
-<section class="history" id="history">
+        👤 MY ACCOUNT
 
-    <h2>History</h2>
+    </h2>
 
-    <div id="historyList">
-        <p>Login করে আপনার transaction history দেখুন।</p>
+
+    <div class="dashboard-grid">
+
+
+        <div class="dashboard-card">
+
+            <span>
+                Logged In As
+            </span>
+
+            <strong
+                id="userEmail"
+                style="font-size: 15px;">
+
+                Loading...
+
+            </strong>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <span>
+                Balance
+            </span>
+
+            <strong>
+                ৳0
+            </strong>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <span>
+                Account
+            </span>
+
+            <strong>
+                Active
+            </strong>
+
+        </div>
+
+
     </div>
 
 </section>
 
 
-<!-- CONTACT -->
 
-<section class="contact" id="contact">
+<!-- ==================================================
+     FEATURED GAMES
+================================================== -->
 
-    <h2>Contact</h2>
+<section
+    class="box"
+    id="games">
 
-    <p>JISANBD6666 Support</p>
 
-    <p>
-        আমাদের সাথে যোগাযোগ করতে Support-এর মাধ্যমে
-        যোগাযোগ করুন।
+    <h2 class="section-title">
+
+        🔥 FEATURED GAMES
+
+    </h2>
+
+
+    <div class="game-grid">
+
+
+        <!-- AVIATOR -->
+
+        <div class="game-card featured-game">
+
+
+            <div class="game-icon">
+                ✈️
+            </div>
+
+
+            <h3>
+                Aviator
+            </h3>
+
+
+            <p>
+                Aircraft multiplier demo
+            </p>
+
+
+            <button
+                type="button"
+                onclick="alert('✈️ Aviator Demo Coming Soon!')">
+
+                PLAY DEMO
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- SLOT -->
+
+        <div class="game-card">
+
+
+            <div class="game-icon">
+                🎰
+            </div>
+
+
+            <h3>
+                Slot Machine
+            </h3>
+
+
+            <p>
+                Classic slot demo
+            </p>
+
+
+            <button
+                type="button"
+                onclick="alert('🎰 Slot Demo Coming Soon!')">
+
+                PLAY DEMO
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- LUCKY SPIN -->
+
+        <div class="game-card">
+
+
+            <div class="game-icon">
+                🎡
+            </div>
+
+
+            <h3>
+                Lucky Spin
+            </h3>
+
+
+            <p>
+                Spin wheel demo
+            </p>
+
+
+            <button
+                type="button"
+                onclick="alert('🎡 Lucky Spin Demo Coming Soon!')">
+
+                PLAY DEMO
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- MINES -->
+
+        <div class="game-card">
+
+
+            <div class="game-icon">
+                💎
+            </div>
+
+
+            <h3>
+                Mines
+            </h3>
+
+
+            <p>
+                Grid puzzle demo
+            </p>
+
+
+            <button
+                type="button"
+                onclick="alert('💎 Mines Demo Coming Soon!')">
+
+                PLAY DEMO
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- BLACKJACK -->
+
+        <div class="game-card">
+
+
+            <div class="game-icon">
+                🃏
+            </div>
+
+
+            <h3>
+                Blackjack
+            </h3>
+
+
+            <p>
+                Card game demo
+            </p>
+
+
+            <button
+                type="button"
+                onclick="alert('🃏 Blackjack Demo Coming Soon!')">
+
+                PLAY DEMO
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- DICE -->
+
+        <div class="game-card">
+
+
+            <div class="game-icon">
+                🎲
+            </div>
+
+
+            <h3>
+                Dice
+            </h3>
+
+
+            <p>
+                Dice roll demo
+            </p>
+
+
+            <button
+                type="button"
+                onclick="alert('🎲 Dice Demo Coming Soon!')">
+
+                PLAY DEMO
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- LUCKY 7 -->
+
+        <div class="game-card">
+
+
+            <div class="game-icon">
+                7️⃣
+            </div>
+
+
+            <h3>
+                Lucky 7
+            </h3>
+
+
+            <p>
+                Number game demo
+            </p>
+
+
+            <button
+                type="button"
+                onclick="alert('7️⃣ Lucky 7 Demo Coming Soon!')">
+
+                PLAY DEMO
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- ROCKET -->
+
+        <div class="game-card">
+
+
+            <div class="game-icon">
+                🚀
+            </div>
+
+
+            <h3>
+                Rocket
+            </h3>
+
+
+            <p>
+                Rocket multiplier demo
+            </p>
+
+
+            <button
+                type="button"
+                onclick="alert('🚀 Rocket Demo Coming Soon!')">
+
+                PLAY DEMO
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- COIN FLIP -->
+
+        <div class="game-card">
+
+
+            <div class="game-icon">
+                🪙
+            </div>
+
+
+            <h3>
+                Coin Flip
+            </h3>
+
+
+            <p>
+                Heads or tails demo
+            </p>
+
+
+            <button
+                type="button"
+                onclick="alert('🪙 Coin Flip Demo Coming Soon!')">
+
+                PLAY DEMO
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- COLOR -->
+
+        <div class="game-card">
+
+
+            <div class="game-icon">
+                🎯
+            </div>
+
+
+            <h3>
+                Color Game
+            </h3>
+
+
+            <p>
+                Color prediction demo
+            </p>
+
+
+            <button
+                type="button"
+                onclick="alert('🎯 Color Game Demo Coming Soon!')">
+
+                PLAY DEMO
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     DEPOSIT + WITHDRAW
+================================================== -->
+
+<section class="box">
+
+
+    <h2 class="section-title">
+
+        💰 WALLET
+
+    </h2>
+
+
+    <div class="action-grid">
+
+
+
+        <!-- DEPOSIT -->
+
+        <div
+            class="action-card"
+            id="deposit">
+
+
+            <h3>
+                💰 Deposit
+            </h3>
+
+
+            <p>
+                Minimum Deposit: 300 TK
+            </p>
+
+
+            <form id="depositForm">
+
+
+                <input
+                    type="number"
+                    id="depositAmount"
+                    placeholder="Deposit Amount"
+                    min="300"
+                    required>
+
+
+                <input
+                    type="text"
+                    id="transactionId"
+                    placeholder="Transaction ID"
+                    required>
+
+
+                <button
+                    type="submit">
+
+                    SUBMIT DEPOSIT
+
+                </button>
+
+
+            </form>
+
+
+        </div>
+
+
+
+        <!-- WITHDRAW -->
+
+        <div
+            class="action-card"
+            id="withdraw">
+
+
+            <h3>
+                💸 Withdraw
+            </h3>
+
+
+            <p>
+                Minimum Withdraw: 500 TK
+            </p>
+
+
+            <input
+                type="text"
+                id="withdrawNumber"
+                placeholder="bKash Number">
+
+
+            <input
+                type="number"
+                id="withdrawAmount"
+                placeholder="Withdraw Amount"
+                min="500">
+
+
+            <button
+                type="button"
+                onclick="alert('💸 Withdraw system will be connected next.')">
+
+                SUBMIT WITHDRAW
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     HISTORY
+================================================== -->
+
+<section
+    class="box"
+    id="history">
+
+
+    <h2 class="section-title">
+
+        📜 TRANSACTION HISTORY
+
+    </h2>
+
+
+    <div class="dashboard-grid">
+
+
+        <div class="dashboard-card">
+
+            <span>
+                Deposit
+            </span>
+
+            <strong>
+                ৳0
+            </strong>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <span>
+                Withdraw
+            </span>
+
+            <strong>
+                ৳0
+            </strong>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <span>
+                Status
+            </span>
+
+            <strong>
+                Active
+            </strong>
+
+        </div>
+
+
+    </div>
+
+
+    <p
+        class="center"
+        style="color:#777; margin-top:20px;">
+
+        Your transaction history will appear here.
+
     </p>
 
+
 </section>
 
 
-<footer>
 
-    <p>© 2026 JISANBD6666</p>
-    <p>Play Responsibly</p>
+<!-- ==================================================
+     SUPPORT / CONTACT
+================================================== -->
+
+<section
+    class="box"
+    id="contact">
+
+
+    <h2 class="section-title">
+
+        📞 SUPPORT
+
+    </h2>
+
+
+    <p class="center">
+
+        Need help?
+
+    </p>
+
+
+    <p class="center">
+
+        JISANBD6666 Support Center
+
+    </p>
+
+
+    <button
+        type="button"
+        onclick="alert('📞 Support system coming soon!')">
+
+        CONTACT SUPPORT
+
+    </button>
+
+
+</section>
+
+
+
+<!-- ==================================================
+     RESPONSIBLE PLAY
+================================================== -->
+
+<section class="box">
+
+
+    <h2 class="section-title">
+
+        ⚠️ RESPONSIBLE PLAY
+
+    </h2>
+
+
+    <p class="center">
+
+        This website's game buttons are currently
+        demo interfaces.
+
+    </p>
+
+
+    <p class="center">
+
+        Play responsibly and only use services
+        that are legal in your location.
+
+    </p>
+
+
+</section>
+
+
+</main>
+
+
+
+<!-- ==================================================
+     FOOTER
+================================================== -->
+
+<footer class="site-footer">
+
+
+    <strong>
+        JISANBD6666
+    </strong>
+
+
+    <p>
+        🎮 Gaming • Entertainment • Community
+    </p>
+
+
+    <p>
+        Play Responsibly
+    </p>
+
+
+    <p>
+        © 2026 JISANBD6666
+    </p>
+
 
 </footer>
 
 
-<script type="module" src="script.js"></script>
+
+<!-- ==================================================
+     SCRIPT
+================================================== -->
+
+<script
+    type="module"
+    src="./script.js">
+</script>
+
 
 </body>
+
 </html>
